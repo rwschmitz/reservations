@@ -24,6 +24,7 @@ var graphql_tag_1 = __importDefault(require("graphql-tag"));
 var react_1 = __importDefault(require("react"));
 var react_native_1 = require("react-native");
 var AllReservationsQuery_1 = require("../queries/AllReservationsQuery");
+var LoadingSpinner_1 = __importDefault(require("./LoadingSpinner"));
 var ALL_RESERVATIONS_QUERY = graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\nquery ALL_RESERVATIONS_QUERY {\n  reservations {\n    id\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"], ["\nquery ALL_RESERVATIONS_QUERY {\n  reservations {\n    id\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"])));
 var styles = react_native_1.StyleSheet.create({
     container: {
@@ -55,7 +56,8 @@ var TestView = /** @class */ (function (_super) {
         return (react_1.default.createElement(react_native_1.View, { style: styles.container },
             react_1.default.createElement(AllReservationsQuery_1.AllReservationsQuery, { query: ALL_RESERVATIONS_QUERY }, function (payload) {
                 if (payload.loading) {
-                    return react_1.default.createElement(react_native_1.Text, null, "Loading, one moment please!");
+                    return (react_1.default.createElement(react_native_1.View, null,
+                        react_1.default.createElement(LoadingSpinner_1.default, null)));
                 }
                 if (payload.error !== undefined) {
                     return react_1.default.createElement(react_native_1.Text, null,
@@ -65,6 +67,7 @@ var TestView = /** @class */ (function (_super) {
                 }
                 if (payload.data !== undefined) {
                     return (react_1.default.createElement(react_native_1.View, null,
+                        payload.data.reservations.map(function (item) { return console.log(item); }),
                         react_1.default.createElement(react_native_1.Text, null,
                             "There are ",
                             payload.data.reservations.length,

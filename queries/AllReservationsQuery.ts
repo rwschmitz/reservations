@@ -1,14 +1,16 @@
 import { Query } from 'react-apollo';
 
+type Reservation = {
+  id: string;
+  name: string;
+  hotelName: string;
+  arrivalDate: string;
+  depatureDate: string;
+  length: number;
+};
+
 type Reservations = {
-  reservations: {
-    id: string;
-    name: string;
-    hotelName: string;
-    arrivalDate: string;
-    depatureDate: string;
-    length: number;
-  };
+  reservations: Reservation[];
 };
 
 /**
