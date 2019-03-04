@@ -22,7 +22,6 @@ var apollo_client_1 = require("apollo-client");
 var react_apollo_1 = require("react-apollo");
 var apollo_link_http_1 = require("apollo-link-http");
 var apollo_cache_inmemory_1 = require("apollo-cache-inmemory");
-var react_native_1 = require("react-native");
 var AddReservation_1 = __importDefault(require("./screens/AddReservation"));
 var ViewReservations_1 = __importDefault(require("./screens/ViewReservations"));
 var AppNavigator = react_navigation_1.createStackNavigator({
@@ -35,24 +34,6 @@ exports.AppContainer = react_navigation_1.createAppContainer(AppNavigator);
 var client = new apollo_client_1.ApolloClient({
     link: new apollo_link_http_1.HttpLink({ uri: 'https://us1.prisma.sh/public-luckox-377/reservation-graphql-backend/dev' }),
     cache: new apollo_cache_inmemory_1.InMemoryCache()
-});
-var styles = react_native_1.StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF'
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5
-    }
 });
 /**
  * App is the entry point for the application.

@@ -67,8 +67,17 @@ var styles = react_native_1.StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF'
+    },
+    textInputStyles: {
+        height: 40,
+        borderColor: '#5449d2',
+        borderWidth: 2,
+        borderRadius: 4,
+        marginBottom: 16,
+        width: 300
     }
 });
+var primaryColor = '#5449d2';
 /**
  * AddReservation allows users to add a reservation.
  */
@@ -114,16 +123,16 @@ var AddReservation = /** @class */ (function (_super) {
                     loading === true ? react_1.default.createElement(LoadingSpinner_1.default, null) : undefined,
                     react_1.default.createElement(react_native_1.Text, null, error),
                     react_1.default.createElement(react_native_1.Text, null, "Enter name: "),
-                    react_1.default.createElement(react_native_1.TextInput, { style: { height: 40, borderColor: '#5449d2', borderWidth: 2, borderRadius: 4, marginBottom: 16, width: 300 }, onChangeText: inputName, value: name }),
+                    react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: inputName, value: name }),
                     react_1.default.createElement(react_native_1.Text, null, "Enter hotel name: "),
-                    react_1.default.createElement(react_native_1.TextInput, { style: { height: 40, borderColor: '#5449d2', borderWidth: 2, borderRadius: 4, marginBottom: 16, width: 300 }, onChangeText: inputHotelName, value: hotelName }),
+                    react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: inputHotelName, value: hotelName }),
                     react_1.default.createElement(react_native_1.Text, null, "Enter arrival date: "),
-                    react_1.default.createElement(react_native_1.TextInput, { style: { height: 40, borderColor: '#5449d2', borderWidth: 2, borderRadius: 4, marginBottom: 16, width: 300 }, onChangeText: inputArrivalDate, value: arrivalDate }),
+                    react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: inputArrivalDate, value: arrivalDate }),
                     react_1.default.createElement(react_native_1.Text, null, "Enter departure date: "),
-                    react_1.default.createElement(react_native_1.TextInput, { style: { height: 40, borderColor: '#5449d2', borderWidth: 2, borderRadius: 4, marginBottom: 16, width: 300 }, onChangeText: inputDepartureDate, value: departureDate }),
+                    react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: inputDepartureDate, value: departureDate }),
                     react_1.default.createElement(react_native_1.Button, { onPress: function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
                             return [2 /*return*/, createReservation({ variables: { input: this.state } })];
-                        }); }); }, title: 'Add new reservation', color: '#5449d2', accessibilityLabel: 'Add new reservation' })));
+                        }); }); }, title: 'Add new reservation', color: "" + primaryColor, accessibilityLabel: 'Add new reservation' })));
             })));
     };
     return AddReservation;

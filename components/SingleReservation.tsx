@@ -6,6 +6,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  reservationContainer: {
+    paddingBottom: 64,
+    width: '100%'
+  },
+  labelStyle: {
+    fontSize: 16,
+    fontWeight: '700'
+  },
+  valueStyle: {
+    fontWeight: '300'
   }
 });
 
@@ -25,11 +36,11 @@ export default class SingleReservation extends React.PureComponent<Props> {
     const { name, hotelName, arrivalDate, departureDate } = this.props;
     return (
       <View style={ styles.container }>
-        <View style={ { paddingBottom: 64, width: '100%'} }>
-          <Text style={ { fontSize: 16, fontWeight: '700' } }>Name: <Text style={ { fontWeight: '300' } }>{ name }</Text></Text>
-          <Text style={ { fontSize: 16, fontWeight: '700' } }>Hotel Name: <Text style={ { fontWeight: '300' } }>{ hotelName }</Text></Text>
-          <Text style={ { fontSize: 16, fontWeight: '700' } }>Arrival Date: <Text style={ { fontWeight: '300' } }>{ arrivalDate }</Text></Text>
-          <Text style={ { fontSize: 16, fontWeight: '700' } }>Depature Date: <Text style={ { fontWeight: '300' } }>{ departureDate }</Text></Text>
+        <View style={ styles.reservationContainer }>
+          <Text style={ styles.labelStyle }>Name: <Text style={ styles.valueStyle }>{ name }</Text></Text>
+          <Text style={ styles.labelStyle }>Hotel Name: <Text style={ styles.valueStyle }>{ hotelName }</Text></Text>
+          <Text style={ styles.labelStyle }>Arrival Date: <Text style={ styles.valueStyle }>{ arrivalDate }</Text></Text>
+          <Text style={ styles.labelStyle }>Depature Date: <Text style={ styles.valueStyle }>{ departureDate }</Text></Text>
         </View>
       </View>
     );

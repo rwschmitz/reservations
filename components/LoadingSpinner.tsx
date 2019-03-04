@@ -8,20 +8,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
   },
+  loadingContainer: {
+    paddingTop: 16
+  },
   textStyle: {
     color: '#333'
   }
 });
 
 /**
- * LoadingSpinner -- Display this component when we're waiting for our GraphQL queries to resolve.
+ * LoadingSpinner -- Display this component when we're waiting for our GraphQL queries/mutations to resolve.
  */
 export default class LoadingSpinner extends React.PureComponent {
   public render() {
     return (
       <View style={ styles.container }>
         <ActivityIndicator size='large' color='#5449d2' />
-        <View style={ { paddingTop: 16 } }>
+        <View style={ styles.loadingContainer }>
           <Text style={ styles.textStyle }>Loading, one moment please!</Text>
         </View>
       </View>

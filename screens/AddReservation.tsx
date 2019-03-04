@@ -21,8 +21,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
+  },
+  textInputStyles: {
+    height: 40,
+    borderColor: '#5449d2',
+    borderWidth: 2,
+    borderRadius: 4,
+    marginBottom: 16,
+    width: 300
   }
 });
+
+const primaryColor: string = '#5449d2';
 
 interface State {
   name: string;
@@ -79,32 +89,32 @@ export default class AddReservation extends React.PureComponent<State> {
             <Text>{ error }</Text>
             <Text>Enter name: </Text>
             <TextInput
-              style={ { height: 40, borderColor: '#5449d2', borderWidth: 2, borderRadius: 4, marginBottom: 16, width: 300 } }
+              style={ styles.textInputStyles }
               onChangeText={ inputName }
               value={ name }
             />
 
             <Text>Enter hotel name: </Text>
             <TextInput
-              style={ { height: 40, borderColor: '#5449d2', borderWidth: 2, borderRadius: 4, marginBottom: 16, width: 300 } }
+              style={ styles.textInputStyles }
               onChangeText={ inputHotelName }
               value={ hotelName }
             />
 
             <Text>Enter arrival date: </Text>
             <TextInput
-              style={ { height: 40, borderColor: '#5449d2', borderWidth: 2, borderRadius: 4, marginBottom: 16, width: 300 } }
+              style={ styles.textInputStyles }
               onChangeText={ inputArrivalDate }
               value={ arrivalDate }
             />
 
             <Text>Enter departure date: </Text>
             <TextInput
-              style={ { height: 40, borderColor: '#5449d2', borderWidth: 2, borderRadius: 4, marginBottom: 16, width: 300 } }
+              style={ styles.textInputStyles }
               onChangeText={ inputDepartureDate }
               value={ departureDate }
             />
-            <Button onPress={ async () => createReservation({ variables: { input: this.state } }) } title='Add new reservation' color='#5449d2' accessibilityLabel='Add new reservation' />
+            <Button onPress={ async () => createReservation({ variables: { input: this.state } }) } title='Add new reservation' color={`${primaryColor}`} accessibilityLabel='Add new reservation' />
           </View>
           )}
         </Mutation>

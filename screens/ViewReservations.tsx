@@ -23,8 +23,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
+  },
+  introWrapperResHidden: {
+    paddingTop: 0
+  },
+  introWrapperResShown: {
+    paddingTop: 160,
+    paddingBottom: 160
+  },
+  introContainer: {
+    marginBottom: 64
+  },
+  introHeadlineTextStyle: {
+    textAlign: 'center'
+  },
+  introTextStyle: {
+    fontSize: 16,
+    paddingBottom: 4
+  },
+  flatListStyle: {
+    marginBottom: 160
   }
 });
+
+const primaryColor: string = '#5449d2';
 
 interface Props {
   navigation: {
@@ -67,21 +89,21 @@ export default class ViewReservations extends React.PureComponent<Props, State> 
               if (payload.error !== undefined) { return <Text>Reservations encountered an error: { payload.error.message } </Text>; }
               if (payload.data !== undefined) {
                 return (
-                  <View style={ this.state.areReservationsShown === false ? { marginTop: 0} : { paddingTop: 160, paddingBottom: 160 } }>
-                    <View style={ { marginBottom: 64 } }>
-                      <Text style={ { fontSize: 16, textAlign: 'center', paddingBottom: 4 } }>Welcome back!</Text>
-                      <Text style={ { fontSize: 16, paddingBottom: 4 } }>There are { payload.data.reservations.length } reservations currently booked.</Text>
-                      <Text style={ { fontSize: 16, paddingBottom: 4 } }>Would you like to add another reservation?</Text>
-                      <Button onPress={ () => this.props.navigation.navigate('Add') } title='Add another reservation' color='#5449d2' accessibilityLabel='Add another reservation' />
+                  <View style={ this.state.areReservationsShown === false ? styles.introWrapperResHidden : styles.introWrapperResShown }>
+                    <View style={ styles.introContainer }>
+                      <Text style={ [ styles.introHeadlineTextStyle, styles.introTextStyle ] }>Welcome back!</Text>
+                      <Text style={ styles.introTextStyle }>There are { payload.data.reservations.length } reservations currently booked.</Text>
+                      <Text style={ styles.introTextStyle }>Would you like to add another reservation?</Text>
+                      <Button onPress={ () => this.props.navigation.navigate('Add') } title='Add another reservation' color={`${primaryColor}`} accessibilityLabel='Add another reservation' />
                     </View>
 
                     { this.state.areReservationsShown === false ?
                       <View>
-                        <Button onPress={ toggleReservationsVisbility } title={`Show current ${payload.data.reservations.length} reservations`} color='#5449d2' accessibilityLabel='View all currently booked reservations' />
+                        <Button onPress={ toggleReservationsVisbility } title={`Show current ${payload.data.reservations.length} reservations`} color={`${primaryColor}`} accessibilityLabel='View all currently booked reservations' />
                       </View>
                     :
-                      <View style={ { marginBottom: 160 } }>
-                        <Button onPress={ toggleReservationsVisbility } title={`Hide all reservations`} color='#5449d2' accessibilityLabel='Hide all currently booked reservations' />
+                      <View style={ styles.flatListStyle }>
+                        <Button onPress={ toggleReservationsVisbility } title={`Hide all reservations`} color={`${primaryColor}`} accessibilityLabel='Hide all currently booked reservations' />
                         <FlatList
                           data={ payload.data.reservations }
                           keyExtractor={ (item: Reservation) => item.id }
