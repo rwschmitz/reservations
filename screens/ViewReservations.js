@@ -67,7 +67,7 @@ var ViewReservations = /** @class */ (function (_super) {
                         " ");
                 }
                 if (payload.data !== undefined) {
-                    return (react_1.default.createElement(react_native_1.View, { style: _this.state.areReservationsShown === false ? { marginTop: 0 } : { marginTop: 160, marginBottom: 160, borderColor: '#5449d2', borderWidth: 2 } },
+                    return (react_1.default.createElement(react_native_1.View, { style: _this.state.areReservationsShown === false ? { marginTop: 0 } : { paddingTop: 160, paddingBottom: 160 } },
                         react_1.default.createElement(react_native_1.View, { style: { marginBottom: 64 } },
                             react_1.default.createElement(react_native_1.Text, { style: { fontSize: 16, textAlign: 'center', paddingBottom: 4 } }, "Welcome back!"),
                             react_1.default.createElement(react_native_1.Text, { style: { fontSize: 16, paddingBottom: 4 } },
@@ -80,7 +80,7 @@ var ViewReservations = /** @class */ (function (_super) {
                             react_1.default.createElement(react_native_1.View, null,
                                 react_1.default.createElement(react_native_1.Button, { onPress: toggleReservationsVisbility, title: "Show current " + payload.data.reservations.length + " reservations", color: '#5449d2', accessibilityLabel: 'View all currently booked reservations' }))
                             :
-                                react_1.default.createElement(react_native_1.View, null,
+                                react_1.default.createElement(react_native_1.View, { style: { marginBottom: 160 } },
                                     react_1.default.createElement(react_native_1.Button, { onPress: toggleReservationsVisbility, title: "Hide all reservations", color: '#5449d2', accessibilityLabel: 'Hide all currently booked reservations' }),
                                     react_1.default.createElement(react_native_1.FlatList, { data: payload.data.reservations, keyExtractor: function (item) { return item.id; }, renderItem: function (props) {
                                             return react_1.default.createElement(SingleReservation_1.default, { name: props.item.name, hotelName: props.item.hotelName, arrivalDate: props.item.arrivalDate, departureDate: props.item.departureDate });

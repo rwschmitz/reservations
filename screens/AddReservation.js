@@ -111,7 +111,7 @@ var AddReservation = /** @class */ (function (_super) {
             react_1.default.createElement(react_apollo_1.Mutation, { mutation: ADD_RESERVATION_MUTATION }, function (createReservation, _a) {
                 var loading = _a.loading, error = _a.error, called = _a.called, data = _a.data;
                 return (react_1.default.createElement(react_native_1.View, null,
-                    loading === false ? react_1.default.createElement(LoadingSpinner_1.default, null) : undefined,
+                    loading === true ? react_1.default.createElement(LoadingSpinner_1.default, null) : undefined,
                     react_1.default.createElement(react_native_1.Text, null, error),
                     react_1.default.createElement(react_native_1.Text, null, "Enter name: "),
                     react_1.default.createElement(react_native_1.TextInput, { style: { height: 40, borderColor: '#5449d2', borderWidth: 2, borderRadius: 4, marginBottom: 16, width: 300 }, onChangeText: inputName, value: name }),

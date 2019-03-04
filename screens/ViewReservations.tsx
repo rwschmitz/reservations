@@ -67,7 +67,7 @@ export default class ViewReservations extends React.PureComponent<Props, State> 
               if (payload.error !== undefined) { return <Text>Reservations encountered an error: { payload.error.message } </Text>; }
               if (payload.data !== undefined) {
                 return (
-                  <View style={ this.state.areReservationsShown === false ? { marginTop: 0} : { marginTop: 160, marginBottom: 160, borderColor: '#5449d2', borderWidth: 2 } }>
+                  <View style={ this.state.areReservationsShown === false ? { marginTop: 0} : { paddingTop: 160, paddingBottom: 160 } }>
                     <View style={ { marginBottom: 64 } }>
                       <Text style={ { fontSize: 16, textAlign: 'center', paddingBottom: 4 } }>Welcome back!</Text>
                       <Text style={ { fontSize: 16, paddingBottom: 4 } }>There are { payload.data.reservations.length } reservations currently booked.</Text>
@@ -80,18 +80,18 @@ export default class ViewReservations extends React.PureComponent<Props, State> 
                         <Button onPress={ toggleReservationsVisbility } title={`Show current ${payload.data.reservations.length} reservations`} color='#5449d2' accessibilityLabel='View all currently booked reservations' />
                       </View>
                     :
-                      <View>
+                      <View style={ { marginBottom: 160 } }>
                         <Button onPress={ toggleReservationsVisbility } title={`Hide all reservations`} color='#5449d2' accessibilityLabel='Hide all currently booked reservations' />
                         <FlatList
-                        data={ payload.data.reservations }
-                        keyExtractor={ (item: Reservation) => item.id }
-                        renderItem={(props) =>
-                          <SingleReservation
-                            name={ props.item.name }
-                            hotelName={ props.item.hotelName }
-                            arrivalDate={ props.item.arrivalDate }
-                            departureDate={ props.item.departureDate }
-                          />
+                          data={ payload.data.reservations }
+                          keyExtractor={ (item: Reservation) => item.id }
+                          renderItem={(props) =>
+                            <SingleReservation
+                              name={ props.item.name }
+                              hotelName={ props.item.hotelName }
+                              arrivalDate={ props.item.arrivalDate }
+                              departureDate={ props.item.departureDate }
+                            />
                           }
                         />
                       </View>
