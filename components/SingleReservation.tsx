@@ -5,8 +5,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    alignItems: 'center'
   }
 });
 
@@ -14,7 +13,7 @@ interface Props {
   name: string;
   hotelName: string;
   arrivalDate: string;
-  depatureDate: string;
+  departureDate: string;
 }
 
 /**
@@ -23,14 +22,14 @@ interface Props {
  */
 export default class SingleReservation extends React.PureComponent<Props> {
   public render() {
-    const { name, hotelName, arrivalDate, depatureDate } = this.props;
+    const { name, hotelName, arrivalDate, departureDate } = this.props;
     return (
       <View style={ styles.container }>
-        <View style={ { backgroundColor: 'green', paddingBottom: 64} }>
-          <Text>Name: { name }</Text>
-          <Text>Hotel Name: { hotelName }</Text>
-          <Text>Arrival Date: { arrivalDate }</Text>
-          <Text>Depature Date: { depatureDate }</Text>
+        <View style={ { paddingBottom: 64, width: '100%'} }>
+          <Text style={ { fontSize: 16, fontWeight: '700' } }>Name: <Text style={ { fontWeight: '300' } }>{ name }</Text></Text>
+          <Text style={ { fontSize: 16, fontWeight: '700' } }>Hotel Name: <Text style={ { fontWeight: '300' } }>{ hotelName }</Text></Text>
+          <Text style={ { fontSize: 16, fontWeight: '700' } }>Arrival Date: <Text style={ { fontWeight: '300' } }>{ arrivalDate }</Text></Text>
+          <Text style={ { fontSize: 16, fontWeight: '700' } }>Depature Date: <Text style={ { fontWeight: '300' } }>{ departureDate }</Text></Text>
         </View>
       </View>
     );

@@ -22,8 +22,7 @@ var styles = react_native_1.StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF'
+        alignItems: 'center'
     }
 });
 /**
@@ -36,21 +35,21 @@ var SingleReservation = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     SingleReservation.prototype.render = function () {
-        var _a = this.props, name = _a.name, hotelName = _a.hotelName, arrivalDate = _a.arrivalDate, depatureDate = _a.depatureDate;
+        var _a = this.props, name = _a.name, hotelName = _a.hotelName, arrivalDate = _a.arrivalDate, departureDate = _a.departureDate;
         return (react_1.default.createElement(react_native_1.View, { style: styles.container },
-            react_1.default.createElement(react_native_1.View, { style: { backgroundColor: 'green', paddingBottom: 64 } },
-                react_1.default.createElement(react_native_1.Text, null,
+            react_1.default.createElement(react_native_1.View, { style: { paddingBottom: 64, width: '100%' } },
+                react_1.default.createElement(react_native_1.Text, { style: { fontSize: 16, fontWeight: '700' } },
                     "Name: ",
-                    name),
-                react_1.default.createElement(react_native_1.Text, null,
+                    react_1.default.createElement(react_native_1.Text, { style: { fontWeight: '300' } }, name)),
+                react_1.default.createElement(react_native_1.Text, { style: { fontSize: 16, fontWeight: '700' } },
                     "Hotel Name: ",
-                    hotelName),
-                react_1.default.createElement(react_native_1.Text, null,
+                    react_1.default.createElement(react_native_1.Text, { style: { fontWeight: '300' } }, hotelName)),
+                react_1.default.createElement(react_native_1.Text, { style: { fontSize: 16, fontWeight: '700' } },
                     "Arrival Date: ",
-                    arrivalDate),
-                react_1.default.createElement(react_native_1.Text, null,
+                    react_1.default.createElement(react_native_1.Text, { style: { fontWeight: '300' } }, arrivalDate)),
+                react_1.default.createElement(react_native_1.Text, { style: { fontSize: 16, fontWeight: '700' } },
                     "Depature Date: ",
-                    depatureDate))));
+                    react_1.default.createElement(react_native_1.Text, { style: { fontWeight: '300' } }, departureDate)))));
     };
     return SingleReservation;
 }(react_1.default.PureComponent));

@@ -5,7 +5,7 @@ type Reservation = {
   name: string;
   hotelName: string;
   arrivalDate: string;
-  depatureDate: string;
+  departureDate: string;
   length: number;
 };
 
