@@ -37,7 +37,7 @@ var styles = react_native_1.StyleSheet.create({
     }
 });
 /**
- * Reservation class contains the code for a single reservation.
+ * SingleReservation class contains the code for a single reservation.
  * This class is created in order to utilize a PureComponent to help with optimization.
  */
 var SingleReservation = /** @class */ (function (_super) {

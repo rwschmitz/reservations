@@ -28,12 +28,13 @@ interface Props {
 }
 
 /**
- * Reservation class contains the code for a single reservation.
+ * SingleReservation class contains the code for a single reservation.
  * This class is created in order to utilize a PureComponent to help with optimization.
  */
 export default class SingleReservation extends React.PureComponent<Props> {
   public render() {
     const { name, hotelName, arrivalDate, departureDate } = this.props;
+
     return (
       <View style={ styles.container }>
         <View style={ styles.reservationContainer }>

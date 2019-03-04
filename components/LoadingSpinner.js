@@ -32,6 +32,7 @@ var styles = react_native_1.StyleSheet.create({
         color: '#333'
     }
 });
+var primaryColor = '#5449d2';
 /**
  * LoadingSpinner -- Display this component when we're waiting for our GraphQL queries/mutations to resolve.
  */
@@ -42,7 +43,7 @@ var LoadingSpinner = /** @class */ (function (_super) {
     }
     LoadingSpinner.prototype.render = function () {
         return (react_1.default.createElement(react_native_1.View, { style: styles.container },
-            react_1.default.createElement(react_native_1.ActivityIndicator, { size: 'large', color: '#5449d2' }),
+            react_1.default.createElement(react_native_1.ActivityIndicator, { size: 'large', color: "" + primaryColor }),
             react_1.default.createElement(react_native_1.View, { style: styles.loadingContainer },
                 react_1.default.createElement(react_native_1.Text, { style: styles.textStyle }, "Loading, one moment please!"))));
     };

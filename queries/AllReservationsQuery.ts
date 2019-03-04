@@ -18,5 +18,4 @@ export { Reservation, Reservations };
 /**
  * AllReservationsQuery queries the DB for all currently booked reservations.
  */
-
 export class AllReservationsQuery extends Query<Reservations> {}
