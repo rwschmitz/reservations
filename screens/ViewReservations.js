@@ -24,7 +24,8 @@ var graphql_tag_1 = __importDefault(require("graphql-tag"));
 var react_1 = __importDefault(require("react"));
 var react_native_1 = require("react-native");
 var AllReservationsQuery_1 = require("../queries/AllReservationsQuery");
-var LoadingSpinner_1 = __importDefault(require("./LoadingSpinner"));
+var LoadingSpinner_1 = __importDefault(require("../components/LoadingSpinner"));
+var SingleReservation_1 = __importDefault(require("../components/SingleReservation"));
 var ALL_RESERVATIONS_QUERY = graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\nquery ALL_RESERVATIONS_QUERY {\n  reservations {\n    id\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"], ["\nquery ALL_RESERVATIONS_QUERY {\n  reservations {\n    id\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"])));
 var styles = react_native_1.StyleSheet.create({
     container: {
@@ -32,27 +33,18 @@ var styles = react_native_1.StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF'
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5
     }
 });
 /**
- * Testview is a test.
+ * ViewReservations holds all currrently booked reservations.
  */
-var TestView = /** @class */ (function (_super) {
-    __extends(TestView, _super);
-    function TestView() {
+var ViewReservations = /** @class */ (function (_super) {
+    __extends(ViewReservations, _super);
+    function ViewReservations() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    TestView.prototype.render = function () {
+    ViewReservations.prototype.render = function () {
+        var _this = this;
         return (react_1.default.createElement(react_native_1.View, { style: styles.container },
             react_1.default.createElement(AllReservationsQuery_1.AllReservationsQuery, { query: ALL_RESERVATIONS_QUERY }, function (payload) {
                 if (payload.loading) {
@@ -66,16 +58,19 @@ var TestView = /** @class */ (function (_super) {
                         " ");
                 }
                 if (payload.data !== undefined) {
-                    return (react_1.default.createElement(react_native_1.View, null,
-                        payload.data.reservations.map(function (item) { return console.log(item); }),
-                        react_1.default.createElement(react_native_1.Text, null,
+                    return (react_1.default.createElement(react_native_1.View, { style: { marginTop: 64 } },
+                        react_1.default.createElement(react_native_1.Button, { onPress: function () { return _this.props.navigation.navigate('Add'); }, title: 'Next screen', color: '#5449d2', accessibilityLabel: 'Go to the next screen' }),
+                        react_1.default.createElement(react_native_1.Text, { style: { paddingBottom: 64 } },
                             "There are ",
                             payload.data.reservations.length,
-                            " reservations currently booked.")));
+                            " reservations currently booked."),
+                        react_1.default.createElement(react_native_1.FlatList, { data: payload.data.reservations, keyExtractor: function (item) { return item.id; }, renderItem: function (props) {
+                                return react_1.default.createElement(SingleReservation_1.default, { name: props.item.name, hotelName: props.item.hotelName, arrivalDate: props.item.arrivalDate, depatureDate: props.item.depatureDate });
+                            } })));
                 }
             })));
     };
-    return TestView;
+    return ViewReservations;
 }(react_1.default.PureComponent));
-exports.default = TestView;
+exports.default = ViewReservations;
 var templateObject_1;

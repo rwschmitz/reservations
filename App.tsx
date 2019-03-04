@@ -1,11 +1,23 @@
-import gql from 'graphql-tag';
 import React from 'react';
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { ApolloClient } from 'apollo-client';
-import { ApolloProvider, graphql } from 'react-apollo';
+import { ApolloProvider } from 'react-apollo';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { StyleSheet, Text, View } from 'react-native';
-import TestView from './components/TestView';
+import { Button, StyleSheet, View } from 'react-native';
+import AddReservation from './screens/AddReservation';
+import ViewReservations from './screens/ViewReservations';
+
+const AppNavigator = createStackNavigator(
+  {
+    View: ViewReservations,
+    Add: AddReservation
+  },
+  {
+    initialRouteName: 'View'
+  });
+
+export const AppContainer = createAppContainer(AppNavigator);
 
 const client = new ApolloClient({
   link: new HttpLink({ uri: 'https://us1.prisma.sh/public-luckox-377/reservation-graphql-backend/dev' }),
@@ -38,9 +50,7 @@ export default class App extends React.PureComponent {
   public render() {
     return (
       <ApolloProvider client={ client }>
-        <View style={ styles.container }>
-          <TestView />
-        </View>
+        <AppContainer />
       </ApolloProvider>
     );
   }

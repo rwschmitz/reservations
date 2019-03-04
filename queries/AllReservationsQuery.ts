@@ -13,6 +13,8 @@ type Reservations = {
   reservations: Reservation[];
 };
 
+export { Reservation, Reservations };
+
 /**
  * AllReservationsQuery queries the DB for all currently booked reservations.
  */
