@@ -118,7 +118,7 @@ var AddReservation = /** @class */ (function (_super) {
         };
         return (react_1.default.createElement(react_native_1.View, { style: styles.container },
             react_1.default.createElement(AddReservationMutation_1.AddReservationMutation, { mutation: ADD_RESERVATION_MUTATION }, function (createReservation, _a) {
-                var loading = _a.loading, error = _a.error, called = _a.called, data = _a.data;
+                var loading = _a.loading, error = _a.error;
                 return (react_1.default.createElement(react_native_1.View, null,
                     loading === true ? react_1.default.createElement(LoadingSpinner_1.default, null) : undefined,
                     react_1.default.createElement(react_native_1.Text, null, error),
