@@ -85,7 +85,7 @@ export default class AddReservation extends React.PureComponent<State> {
         <AddReservationMutation mutation={ ADD_RESERVATION_MUTATION }>
           {(createReservation, { loading, error }) => (
             <View>
-            { loading === true ? <LoadingSpinner /> : undefined }
+            { loading === true ? <LoadingSpinner copy='Sending reservation...' /> : undefined }
             <Text>{ error }</Text>
             <Text>Enter name: </Text>
             <TextInput

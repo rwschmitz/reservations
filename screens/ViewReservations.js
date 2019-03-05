@@ -79,7 +79,7 @@ var ViewReservations = /** @class */ (function (_super) {
             react_1.default.createElement(AllReservationsQuery_1.AllReservationsQuery, { query: ALL_RESERVATIONS_QUERY }, function (payload) {
                 if (payload.loading) {
                     return (react_1.default.createElement(react_native_1.View, null,
-                        react_1.default.createElement(LoadingSpinner_1.default, null)));
+                        react_1.default.createElement(LoadingSpinner_1.default, { copy: 'Loading, please wait a moment!' })));
                 }
                 if (payload.error !== undefined) {
                     return react_1.default.createElement(react_native_1.Text, null,

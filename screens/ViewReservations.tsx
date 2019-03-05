@@ -82,7 +82,7 @@ export default class ViewReservations extends React.PureComponent<Props, State> 
               if (payload.loading) {
                 return (
                 <View>
-                  <LoadingSpinner />
+                  <LoadingSpinner copy='Loading, please wait a moment!' />
                 </View>
               );
             }

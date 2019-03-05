@@ -120,7 +120,7 @@ var AddReservation = /** @class */ (function (_super) {
             react_1.default.createElement(AddReservationMutation_1.AddReservationMutation, { mutation: ADD_RESERVATION_MUTATION }, function (createReservation, _a) {
                 var loading = _a.loading, error = _a.error;
                 return (react_1.default.createElement(react_native_1.View, null,
-                    loading === true ? react_1.default.createElement(LoadingSpinner_1.default, null) : undefined,
+                    loading === true ? react_1.default.createElement(LoadingSpinner_1.default, { copy: 'Sending reservation...' }) : undefined,
                     react_1.default.createElement(react_native_1.Text, null, error),
                     react_1.default.createElement(react_native_1.Text, null, "Enter name: "),
                     react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: inputName, value: name }),
