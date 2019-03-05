@@ -57,7 +57,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var react_native_1 = require("react-native");
-var react_apollo_1 = require("react-apollo");
+var AddReservationMutation_1 = require("../mutations/AddReservationMutation");
 var graphql_tag_1 = __importDefault(require("graphql-tag"));
 var LoadingSpinner_1 = __importDefault(require("../components/LoadingSpinner"));
 var ADD_RESERVATION_MUTATION = graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\nmutation createReservation($input: ReservationCreateInput!) {\n  createReservation(data: $input) {\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"], ["\nmutation createReservation($input: ReservationCreateInput!) {\n  createReservation(data: $input) {\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"])));
@@ -117,7 +117,7 @@ var AddReservation = /** @class */ (function (_super) {
             });
         };
         return (react_1.default.createElement(react_native_1.View, { style: styles.container },
-            react_1.default.createElement(react_apollo_1.Mutation, { mutation: ADD_RESERVATION_MUTATION }, function (createReservation, _a) {
+            react_1.default.createElement(AddReservationMutation_1.AddReservationMutation, { mutation: ADD_RESERVATION_MUTATION }, function (createReservation, _a) {
                 var loading = _a.loading, error = _a.error, called = _a.called, data = _a.data;
                 return (react_1.default.createElement(react_native_1.View, null,
                     loading === true ? react_1.default.createElement(LoadingSpinner_1.default, null) : undefined,

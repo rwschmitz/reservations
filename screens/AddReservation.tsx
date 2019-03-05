@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import { Mutation } from 'react-apollo';
+import { AddReservationMutation } from '../mutations/AddReservationMutation';
 import gql from 'graphql-tag';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -82,7 +82,7 @@ export default class AddReservation extends React.PureComponent<State> {
 
     return (
       <View style={ styles.container }>
-        <Mutation mutation={ ADD_RESERVATION_MUTATION }>
+        <AddReservationMutation mutation={ ADD_RESERVATION_MUTATION }>
           {(createReservation, { loading, error, called, data }) => (
             <View>
             { loading === true ? <LoadingSpinner /> : undefined }
@@ -117,7 +117,7 @@ export default class AddReservation extends React.PureComponent<State> {
             <Button onPress={ async () => createReservation({ variables: { input: this.state } }) } title='Add new reservation' color={`${primaryColor}`} accessibilityLabel='Add new reservation' />
           </View>
           )}
-        </Mutation>
+        </AddReservationMutation>
       </View>
     );
   }
