@@ -7,6 +7,7 @@
       "arguments",
       "statements"
     ],
+    "await-promise": false,
     "ban": false,
     "class-name": true,
     "comment-format": [
@@ -24,6 +25,7 @@
     "interface-name": [false],
     "jsdoc-format": true,
     "label-position": true,
+    "max-func-body-length": false,
     "max-line-length": [
       false,
       180

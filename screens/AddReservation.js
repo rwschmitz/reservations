@@ -57,8 +57,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var react_native_1 = require("react-native");
-var AddReservationMutation_1 = require("../mutations/AddReservationMutation");
 var graphql_tag_1 = __importDefault(require("graphql-tag"));
+var moment_1 = __importDefault(require("moment"));
+var AddReservationMutation_1 = require("../mutations/AddReservationMutation");
 var LoadingSpinner_1 = __importDefault(require("../components/LoadingSpinner"));
 var ADD_RESERVATION_MUTATION = graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\nmutation createReservation($input: ReservationCreateInput!) {\n  createReservation(data: $input) {\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"], ["\nmutation createReservation($input: ReservationCreateInput!) {\n  createReservation(data: $input) {\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"])));
 var styles = react_native_1.StyleSheet.create({
@@ -75,6 +76,9 @@ var styles = react_native_1.StyleSheet.create({
         borderRadius: 4,
         marginBottom: 16,
         width: 300
+    },
+    textInputEmphasisStyles: {
+        fontWeight: '700'
     }
 });
 var primaryColor = '#5449d2';
@@ -86,35 +90,133 @@ var AddReservation = /** @class */ (function (_super) {
     function AddReservation() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.state = {
-            name: '',
-            hotelName: '',
-            arrivalDate: '',
-            departureDate: ''
+            reservationDetails: {
+                name: '',
+                hotelName: '',
+                arrivalDate: '',
+                departureDate: ''
+            },
+            isArrivalValid: false,
+            isDepartureValid: false,
+            isRangeValid: false,
+            isNameValid: false,
+            isHotelNameValid: false,
+            areErrorsPresent: true,
+            areErrorStylesActive: false
+        };
+        _this.errorsPresent = function () {
+            _this.setState({
+                areErrorsPresent: true
+            });
+            if (_this.state.isArrivalValid === true && _this.state.isDepartureValid === true && _this.state.isRangeValid === true && _this.state.isNameValid === true && _this.state.isHotelNameValid === true) {
+                _this.setState({
+                    areErrorsPresent: false
+                });
+            }
         };
         return _this;
     }
+    AddReservation.prototype.componentDidUpdate = function () {
+        this.errorsPresent();
+    };
     AddReservation.prototype.render = function () {
         var _this = this;
-        var _a = this.state, name = _a.name, hotelName = _a.hotelName, arrivalDate = _a.arrivalDate, departureDate = _a.departureDate;
+        var _a = this.state.reservationDetails, name = _a.name, hotelName = _a.hotelName, arrivalDate = _a.arrivalDate, departureDate = _a.departureDate;
         var inputName = function (name) {
+            var isNameOnlyLetters = /^[a-zA-Z]+$/.test(name);
+            console.log(isNameOnlyLetters);
+            if (name.length === 0) {
+                _this.setState({
+                    isNameValid: false
+                });
+            }
+            else {
+                _this.setState({
+                    isNameValid: true
+                });
+            }
             _this.setState({
-                name: name
+                reservationDetails: {
+                    name: name,
+                    hotelName: hotelName,
+                    arrivalDate: arrivalDate,
+                    departureDate: departureDate
+                }
             });
         };
         var inputHotelName = function (hotelName) {
+            if (hotelName.length === 0) {
+                _this.setState({
+                    isHotelNameValid: false
+                });
+            }
+            else {
+                _this.setState({
+                    isHotelNameValid: true
+                });
+            }
             _this.setState({
-                hotelName: hotelName
+                reservationDetails: {
+                    name: name,
+                    hotelName: hotelName,
+                    arrivalDate: arrivalDate,
+                    departureDate: departureDate
+                }
             });
         };
         var inputArrivalDate = function (arrivalDate) {
+            var validArrival = moment_1.default(arrivalDate, ['YYYYMMDD', 'YYYY/MM/DD', 'YYYY-MM-DD'], true).isValid();
+            var validRange = moment_1.default(departureDate).isSameOrAfter(arrivalDate, 'day');
+            if (validRange === false) {
+                _this.setState({
+                    isRangeValid: false
+                });
+            }
+            else {
+                _this.setState({
+                    isRangeValid: true
+                });
+            }
             _this.setState({
-                arrivalDate: arrivalDate
+                reservationDetails: {
+                    name: name,
+                    hotelName: hotelName,
+                    arrivalDate: arrivalDate,
+                    departureDate: departureDate
+                },
+                isArrivalValid: validArrival
             });
         };
         var inputDepartureDate = function (departureDate) {
+            var validDeparture = moment_1.default(departureDate, ['YYYYMMDD', 'YYYY/MM/DD', 'YYYY-MM-DD'], true).isValid();
+            var validRange = moment_1.default(departureDate).isSameOrAfter(arrivalDate, 'day');
+            if (validRange === false) {
+                _this.setState({
+                    isRangeValid: false
+                });
+            }
+            else {
+                _this.setState({
+                    isRangeValid: true
+                });
+            }
             _this.setState({
-                departureDate: departureDate
+                reservationDetails: {
+                    name: name,
+                    hotelName: hotelName,
+                    arrivalDate: arrivalDate,
+                    departureDate: departureDate
+                },
+                isDepartureValid: validDeparture
             });
+        };
+        var toggleErrorStyles = function () {
+            var areErrorsPresent = _this.state.areErrorsPresent;
+            if (areErrorsPresent === true) {
+                _this.setState({
+                    areErrorStylesActive: true
+                });
+            }
         };
         return (react_1.default.createElement(react_native_1.View, { style: styles.container },
             react_1.default.createElement(AddReservationMutation_1.AddReservationMutation, { mutation: ADD_RESERVATION_MUTATION }, function (createReservation, _a) {
@@ -122,16 +224,20 @@ var AddReservation = /** @class */ (function (_super) {
                 return (react_1.default.createElement(react_native_1.View, null,
                     loading === true ? react_1.default.createElement(LoadingSpinner_1.default, { copy: 'Sending reservation...' }) : undefined,
                     react_1.default.createElement(react_native_1.Text, null, error),
-                    react_1.default.createElement(react_native_1.Text, null, "Enter name: "),
+                    react_1.default.createElement(react_native_1.Text, null, "Enter name "),
                     react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: inputName, value: name }),
-                    react_1.default.createElement(react_native_1.Text, null, "Enter hotel name: "),
+                    react_1.default.createElement(react_native_1.Text, null, "Enter hotel name "),
                     react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: inputHotelName, value: hotelName }),
-                    react_1.default.createElement(react_native_1.Text, null, "Enter arrival date: "),
+                    react_1.default.createElement(react_native_1.Text, null,
+                        "Enter arrival date ",
+                        react_1.default.createElement(react_native_1.Text, { style: styles.textInputEmphasisStyles }, "(YYYY/MM/DD)")),
                     react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: inputArrivalDate, value: arrivalDate }),
-                    react_1.default.createElement(react_native_1.Text, null, "Enter departure date: "),
+                    react_1.default.createElement(react_native_1.Text, null,
+                        "Enter departure date ",
+                        react_1.default.createElement(react_native_1.Text, { style: styles.textInputEmphasisStyles }, "(YYYY/MM/DD)")),
                     react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: inputDepartureDate, value: departureDate }),
-                    react_1.default.createElement(react_native_1.Button, { onPress: function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                            return [2 /*return*/, createReservation({ variables: { input: this.state } })];
+                    react_1.default.createElement(react_native_1.Button, { onPress: _this.state.areErrorsPresent === true ? toggleErrorStyles : function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                            return [2 /*return*/, createReservation({ variables: { input: this.state.reservationDetails } })];
                         }); }); }, title: 'Add new reservation', color: "" + primaryColor, accessibilityLabel: 'Add new reservation' })));
             })));
     };
