@@ -4,6 +4,8 @@ import gql from 'graphql-tag';
 import moment from 'moment';
 import { AddReservationMutation } from '../mutations/AddReservationMutation';
 import LoadingSpinner from '../components/LoadingSpinner';
+import NameField from '../components/NameField';
+import DateField from '../components/DateField';
 
 const ADD_RESERVATION_MUTATION = gql`
 mutation createReservation($input: ReservationCreateInput!) {
@@ -22,20 +24,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
-  },
-  textInputStyles: {
-    height: 40,
-    borderColor: '#5449d2',
-    borderWidth: 2,
-    borderRadius: 4,
-    marginBottom: 16,
-    width: 300
-  },
-  textInputEmphasisStyles: {
-    fontWeight: '700'
-  },
-  textErrorStyles: {
-    color: '#e12d39'
   }
 });
 
@@ -208,80 +196,44 @@ export default class AddReservation extends React.PureComponent<State> {
       <View style={ styles.container }>
         <AddReservationMutation mutation={ ADD_RESERVATION_MUTATION }>
           {(createReservation, { loading, error }) => (
-            <View>
+          <View>
             { loading === true ? <LoadingSpinner copy='Sending reservation...' /> : undefined }
             <Text>{ error }</Text>
-            { areErrorStylesActive === true && isNameValid === false ?
-            <View>
-            { name.length === 0 ? <Text style={ styles.textErrorStyles }>Field cannot be left blank.</Text> : <Text style={ styles.textErrorStyles }>Only letters are allowed.</Text> }
-            </View>
-            :
-            undefined
-            }
-            <Text>Enter name </Text>
-            <TextInput
-              style={ styles.textInputStyles }
-              onChangeText={ inputName }
-              value={ name }
+
+            <NameField
+              areErrorStylesActive={ areErrorStylesActive }
+              isErrorValid={ isNameValid }
+              fieldValue={ name }
+              fieldName='name'
+              typeOfMethod={ inputName }
             />
 
-            { areErrorStylesActive === true && isHotelNameValid === false ?
-            <View>
-              <Text style={ styles.textErrorStyles }>Field cannot be left blank.</Text>
-            </View>
-            :
-            undefined
-            }
-            <Text>Enter hotel name </Text>
-            <TextInput
-              style={ styles.textInputStyles }
-              onChangeText={ inputHotelName }
-              value={ hotelName }
+            <NameField
+              areErrorStylesActive={ areErrorStylesActive }
+              isErrorValid={ isHotelNameValid }
+              fieldValue={ hotelName }
+              fieldName='hotel name'
+              typeOfMethod={ inputHotelName }
             />
 
-            { areErrorStylesActive === true && isArrivalValid === false ?
-            <View>
-              { arrivalDate.length === 0 ? <Text style={ styles.textErrorStyles }>Field cannot be left blank.</Text> : <Text style={ styles.textErrorStyles }>Format of date is incorrect.</Text> }
-            </View>
-            :
-            undefined
-            }
-
-            { areErrorStylesActive === true && isArrivalValid === true ?
-              <View>
-                { isRangeValid === false ? <Text style={ styles.textErrorStyles }>Arrival date cannot be after departure date</Text> : undefined }
-              </View>
-              :
-              undefined
-            }
-            <Text>Enter arrival date <Text style={ styles.textInputEmphasisStyles }>(YYYY/MM/DD)</Text></Text>
-            <TextInput
-              style={ styles.textInputStyles }
-              onChangeText={ inputArrivalDate }
-              value={ arrivalDate }
+            <DateField
+              areErrorStylesActive={ areErrorStylesActive }
+              isErrorValid={ isArrivalValid }
+              isRangeValid={ isRangeValid }
+              fieldValue={ arrivalDate }
+              fieldName='arrival date'
+              typeOfMethod={ inputArrivalDate }
             />
 
-            { areErrorStylesActive === true && isDepartureValid === false ?
-            <View>
-              { departureDate.length === 0 ? <Text style={ styles.textErrorStyles }>Field cannot be left blank.</Text> : <Text style={ styles.textErrorStyles }>Format of date is incorrect.</Text> }
-            </View>
-            :
-            undefined
-            }
-
-            { areErrorStylesActive === true && isDepartureValid === true ?
-              <View>
-                { isRangeValid === false ? <Text style={ styles.textErrorStyles }>Arrival date cannot be after departure date</Text> : undefined }
-              </View>
-              :
-              undefined
-            }
-            <Text>Enter departure date <Text style={ styles.textInputEmphasisStyles }>(YYYY/MM/DD)</Text></Text>
-            <TextInput
-              style={ styles.textInputStyles }
-              onChangeText={ inputDepartureDate }
-              value={ departureDate }
+            <DateField
+              areErrorStylesActive={ areErrorStylesActive }
+              isErrorValid={ isDepartureValid }
+              isRangeValid={ isRangeValid }
+              fieldValue={ departureDate }
+              fieldName='departure date'
+              typeOfMethod={ inputDepartureDate }
             />
+
             <Button onPress={ this.state.areErrorsPresent === true ? toggleErrorStyles : async () => createReservation({ variables: { input: this.state.reservationDetails } }) } title='Add new reservation' color={`${primaryColor}`} accessibilityLabel='Add new reservation' />
           </View>
           )}
