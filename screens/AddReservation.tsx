@@ -33,6 +33,9 @@ const styles = StyleSheet.create({
   },
   textInputEmphasisStyles: {
     fontWeight: '700'
+  },
+  textErrorStyles: {
+    color: '#e12d39'
   }
 });
 
@@ -46,6 +49,7 @@ interface State {
     departureDate: string;
   };
   isArrivalValid: boolean;
+  arrivalFormat: string;
   isDepartureValid: boolean;
   isRangeValid: boolean;
   areErrorsPresent: boolean;
@@ -71,6 +75,7 @@ export default class AddReservation extends React.PureComponent<State> {
       departureDate: ''
     },
     isArrivalValid: false,
+    arrivalFormat: '',
     isDepartureValid: false,
     isRangeValid: false,
     isNameValid: false,
@@ -92,19 +97,18 @@ export default class AddReservation extends React.PureComponent<State> {
   }
 
   public render() {
-    const { reservationDetails: { name, hotelName, arrivalDate, departureDate } } = this.state;
+    const { reservationDetails: { name, hotelName, arrivalDate, departureDate }, areErrorStylesActive, isNameValid, isHotelNameValid, isArrivalValid, isDepartureValid, isRangeValid } = this.state;
 
     const inputName = (name: string) => {
       const isNameOnlyLetters = /^[a-zA-Z]+$/.test(name);
-      console.log(isNameOnlyLetters);
 
-      if (name.length === 0) {
+      if (name.length > 0 && isNameOnlyLetters === true) {
         this.setState({
-          isNameValid: false
+          isNameValid: true
         });
       } else {
         this.setState({
-          isNameValid: true
+          isNameValid: false
         });
       }
 
@@ -142,6 +146,7 @@ export default class AddReservation extends React.PureComponent<State> {
 
     const inputArrivalDate = (arrivalDate: string) => {
       const validArrival = moment(arrivalDate, ['YYYYMMDD', 'YYYY/MM/DD', 'YYYY-MM-DD'], true).isValid();
+      const arrivalFormat = moment(arrivalDate, ['YYYYMMDD', 'YYYY/MM/DD', 'YYYY-MM-DD'], true).format();
       const validRange = moment(departureDate).isSameOrAfter(arrivalDate, 'day');
 
       if (validRange === false) {
@@ -161,6 +166,7 @@ export default class AddReservation extends React.PureComponent<State> {
           arrivalDate,
           departureDate
         },
+        arrivalFormat,
         isArrivalValid: validArrival
       });
     };
@@ -205,6 +211,13 @@ export default class AddReservation extends React.PureComponent<State> {
             <View>
             { loading === true ? <LoadingSpinner copy='Sending reservation...' /> : undefined }
             <Text>{ error }</Text>
+            { areErrorStylesActive === true && isNameValid === false ?
+            <View>
+            { name.length === 0 ? <Text style={ styles.textErrorStyles }>Field cannot be left blank.</Text> : <Text style={ styles.textErrorStyles }>Only letters are allowed.</Text> }
+            </View>
+            :
+            undefined
+            }
             <Text>Enter name </Text>
             <TextInput
               style={ styles.textInputStyles }
@@ -212,6 +225,13 @@ export default class AddReservation extends React.PureComponent<State> {
               value={ name }
             />
 
+            { areErrorStylesActive === true && isHotelNameValid === false ?
+            <View>
+              <Text style={ styles.textErrorStyles }>Field cannot be left blank.</Text>
+            </View>
+            :
+            undefined
+            }
             <Text>Enter hotel name </Text>
             <TextInput
               style={ styles.textInputStyles }
@@ -219,6 +239,21 @@ export default class AddReservation extends React.PureComponent<State> {
               value={ hotelName }
             />
 
+            { areErrorStylesActive === true && isArrivalValid === false ?
+            <View>
+              { arrivalDate.length === 0 ? <Text style={ styles.textErrorStyles }>Field cannot be left blank.</Text> : <Text style={ styles.textErrorStyles }>Format of date is incorrect.</Text> }
+            </View>
+            :
+            undefined
+            }
+
+            { areErrorStylesActive === true && isArrivalValid === true ?
+              <View>
+                { isRangeValid === false ? <Text style={ styles.textErrorStyles }>Arrival date cannot be after departure date</Text> : undefined }
+              </View>
+              :
+              undefined
+            }
             <Text>Enter arrival date <Text style={ styles.textInputEmphasisStyles }>(YYYY/MM/DD)</Text></Text>
             <TextInput
               style={ styles.textInputStyles }
@@ -226,6 +261,21 @@ export default class AddReservation extends React.PureComponent<State> {
               value={ arrivalDate }
             />
 
+            { areErrorStylesActive === true && isDepartureValid === false ?
+            <View>
+              { departureDate.length === 0 ? <Text style={ styles.textErrorStyles }>Field cannot be left blank.</Text> : <Text style={ styles.textErrorStyles }>Format of date is incorrect.</Text> }
+            </View>
+            :
+            undefined
+            }
+
+            { areErrorStylesActive === true && isDepartureValid === true ?
+              <View>
+                { isRangeValid === false ? <Text style={ styles.textErrorStyles }>Arrival date cannot be after departure date</Text> : undefined }
+              </View>
+              :
+              undefined
+            }
             <Text>Enter departure date <Text style={ styles.textInputEmphasisStyles }>(YYYY/MM/DD)</Text></Text>
             <TextInput
               style={ styles.textInputStyles }

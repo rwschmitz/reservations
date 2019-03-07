@@ -79,6 +79,9 @@ var styles = react_native_1.StyleSheet.create({
     },
     textInputEmphasisStyles: {
         fontWeight: '700'
+    },
+    textErrorStyles: {
+        color: '#e12d39'
     }
 });
 var primaryColor = '#5449d2';
@@ -97,6 +100,7 @@ var AddReservation = /** @class */ (function (_super) {
                 departureDate: ''
             },
             isArrivalValid: false,
+            arrivalFormat: '',
             isDepartureValid: false,
             isRangeValid: false,
             isNameValid: false,
@@ -121,18 +125,17 @@ var AddReservation = /** @class */ (function (_super) {
     };
     AddReservation.prototype.render = function () {
         var _this = this;
-        var _a = this.state.reservationDetails, name = _a.name, hotelName = _a.hotelName, arrivalDate = _a.arrivalDate, departureDate = _a.departureDate;
+        var _a = this.state, _b = _a.reservationDetails, name = _b.name, hotelName = _b.hotelName, arrivalDate = _b.arrivalDate, departureDate = _b.departureDate, areErrorStylesActive = _a.areErrorStylesActive, isNameValid = _a.isNameValid, isHotelNameValid = _a.isHotelNameValid, isArrivalValid = _a.isArrivalValid, isDepartureValid = _a.isDepartureValid, isRangeValid = _a.isRangeValid;
         var inputName = function (name) {
             var isNameOnlyLetters = /^[a-zA-Z]+$/.test(name);
-            console.log(isNameOnlyLetters);
-            if (name.length === 0) {
+            if (name.length > 0 && isNameOnlyLetters === true) {
                 _this.setState({
-                    isNameValid: false
+                    isNameValid: true
                 });
             }
             else {
                 _this.setState({
-                    isNameValid: true
+                    isNameValid: false
                 });
             }
             _this.setState({
@@ -166,6 +169,7 @@ var AddReservation = /** @class */ (function (_super) {
         };
         var inputArrivalDate = function (arrivalDate) {
             var validArrival = moment_1.default(arrivalDate, ['YYYYMMDD', 'YYYY/MM/DD', 'YYYY-MM-DD'], true).isValid();
+            var arrivalFormat = moment_1.default(arrivalDate, ['YYYYMMDD', 'YYYY/MM/DD', 'YYYY-MM-DD'], true).format();
             var validRange = moment_1.default(departureDate).isSameOrAfter(arrivalDate, 'day');
             if (validRange === false) {
                 _this.setState({
@@ -184,6 +188,7 @@ var AddReservation = /** @class */ (function (_super) {
                     arrivalDate: arrivalDate,
                     departureDate: departureDate
                 },
+                arrivalFormat: arrivalFormat,
                 isArrivalValid: validArrival
             });
         };
@@ -224,14 +229,39 @@ var AddReservation = /** @class */ (function (_super) {
                 return (react_1.default.createElement(react_native_1.View, null,
                     loading === true ? react_1.default.createElement(LoadingSpinner_1.default, { copy: 'Sending reservation...' }) : undefined,
                     react_1.default.createElement(react_native_1.Text, null, error),
+                    areErrorStylesActive === true && isNameValid === false ?
+                        react_1.default.createElement(react_native_1.View, null, name.length === 0 ? react_1.default.createElement(react_native_1.Text, { style: styles.textErrorStyles }, "Field cannot be left blank.") : react_1.default.createElement(react_native_1.Text, { style: styles.textErrorStyles }, "Only letters are allowed."))
+                        :
+                            undefined,
                     react_1.default.createElement(react_native_1.Text, null, "Enter name "),
                     react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: inputName, value: name }),
+                    areErrorStylesActive === true && isHotelNameValid === false ?
+                        react_1.default.createElement(react_native_1.View, null,
+                            react_1.default.createElement(react_native_1.Text, { style: styles.textErrorStyles }, "Field cannot be left blank."))
+                        :
+                            undefined,
                     react_1.default.createElement(react_native_1.Text, null, "Enter hotel name "),
                     react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: inputHotelName, value: hotelName }),
+                    areErrorStylesActive === true && isArrivalValid === false ?
+                        react_1.default.createElement(react_native_1.View, null, arrivalDate.length === 0 ? react_1.default.createElement(react_native_1.Text, { style: styles.textErrorStyles }, "Field cannot be left blank.") : react_1.default.createElement(react_native_1.Text, { style: styles.textErrorStyles }, "Format of date is incorrect."))
+                        :
+                            undefined,
+                    areErrorStylesActive === true && isArrivalValid === true ?
+                        react_1.default.createElement(react_native_1.View, null, isRangeValid === false ? react_1.default.createElement(react_native_1.Text, { style: styles.textErrorStyles }, "Arrival date cannot be after departure date") : undefined)
+                        :
+                            undefined,
                     react_1.default.createElement(react_native_1.Text, null,
                         "Enter arrival date ",
                         react_1.default.createElement(react_native_1.Text, { style: styles.textInputEmphasisStyles }, "(YYYY/MM/DD)")),
                     react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: inputArrivalDate, value: arrivalDate }),
+                    areErrorStylesActive === true && isDepartureValid === false ?
+                        react_1.default.createElement(react_native_1.View, null, departureDate.length === 0 ? react_1.default.createElement(react_native_1.Text, { style: styles.textErrorStyles }, "Field cannot be left blank.") : react_1.default.createElement(react_native_1.Text, { style: styles.textErrorStyles }, "Format of date is incorrect."))
+                        :
+                            undefined,
+                    areErrorStylesActive === true && isDepartureValid === true ?
+                        react_1.default.createElement(react_native_1.View, null, isRangeValid === false ? react_1.default.createElement(react_native_1.Text, { style: styles.textErrorStyles }, "Arrival date cannot be after departure date") : undefined)
+                        :
+                            undefined,
                     react_1.default.createElement(react_native_1.Text, null,
                         "Enter departure date ",
                         react_1.default.createElement(react_native_1.Text, { style: styles.textInputEmphasisStyles }, "(YYYY/MM/DD)")),
