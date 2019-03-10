@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
 var enzyme_1 = require("enzyme");
+var react_1 = __importDefault(require("react"));
 var LoadingSpinner_1 = __importDefault(require("../LoadingSpinner"));
 var fakeCopy = 'This is some test copy';
 describe('<LoadingSpinner />', function () {

@@ -1,5 +1,5 @@
-import React from 'react';
 import { mount } from 'enzyme';
+import React from 'react';
 import LoadingSpinner from '../LoadingSpinner';
 
 const fakeCopy: string = 'This is some test copy';

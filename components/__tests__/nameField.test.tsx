@@ -2,11 +2,11 @@ import { mount, shallow } from 'enzyme';
 import React from 'react';
 import NameField from '../NameField';
 
-const fakeAreErrorStylesActive =  false;
-const fakeIsErrorValid =  false;
-const fakeFieldName =  'name';
-const fakeFieldValue =  'rudy';
-const fakeTypeOfMethod = () => { 'newValue'; };
+const fakeAreErrorStylesActive: boolean =  false;
+const fakeIsErrorValid: boolean =  false;
+const fakeFieldName: string =  'name';
+const fakeFieldValue: string =  'rudy';
+const fakeTypeOfMethod = (): void => { 'newValue'; };
 
 describe('<NameField />', () => {
 

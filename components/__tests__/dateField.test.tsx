@@ -2,12 +2,12 @@ import { mount, shallow } from 'enzyme';
 import React from 'react';
 import DateField from '../DateField';
 
-const fakeAreErrorStylesActive = false;
-const fakeIsErrorValid = false;
-const fakeIsRangeValid = false;
-const fakeFieldName = 'arrivalDate';
-const fakeFieldValue = '2019/03/09';
-const fakeTypeOfMethod = () => { 'newValue'; };
+const fakeAreErrorStylesActive: boolean = false;
+const fakeIsErrorValid: boolean = false;
+const fakeIsRangeValid: boolean = false;
+const fakeFieldName: string = 'arrivalDate';
+const fakeFieldValue: string = '2019/03/09';
+const fakeTypeOfMethod = (): void => { 'newValue'; };
 
 describe('<DateField />', () => {
 
