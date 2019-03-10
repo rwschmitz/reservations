@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
 import gql from 'graphql-tag';
 import moment from 'moment';
 import { AddReservationMutation } from '../mutations/AddReservationMutation';
@@ -191,7 +191,7 @@ export default class AddReservation extends React.PureComponent<State> {
     };
 
     return (
-      <View style={ styles.container }>
+      <KeyboardAvoidingView style={ styles.container } behavior='padding' enabled={ true }>
         <AddReservationMutation mutation={ ADD_RESERVATION_MUTATION }>
           {(createReservation, { loading, error }) => (
           <View>
@@ -236,7 +236,7 @@ export default class AddReservation extends React.PureComponent<State> {
           </View>
           )}
         </AddReservationMutation>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
