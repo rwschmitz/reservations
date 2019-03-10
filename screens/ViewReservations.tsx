@@ -4,6 +4,7 @@ import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import { AllReservationsQuery, Reservation } from '../queries/AllReservationsQuery';
 import LoadingSpinner from '../components/LoadingSpinner';
 import SingleReservation from '../components/SingleReservation';
+import { ViewReservationsScreenProps } from '../App';
 
 const ALL_RESERVATIONS_QUERY = gql`
 query ALL_RESERVATIONS_QUERY {
@@ -48,20 +49,16 @@ const styles = StyleSheet.create({
 
 const primaryColor: string = '#5449d2';
 
-interface Props {
-  navigation: {
-    navigate(screen: string): {};
-  };
-}
-
 interface State {
   areReservationsShown: boolean;
 }
 
+export { ALL_RESERVATIONS_QUERY };
+
 /**
  * ViewReservations holds all currrently booked reservations.
  */
-export default class ViewReservations extends React.PureComponent<Props, State> {
+export default class ViewReservations extends React.PureComponent<ViewReservationsScreenProps, State> {
 
   public state = {
     areReservationsShown: false

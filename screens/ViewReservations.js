@@ -27,6 +27,7 @@ var AllReservationsQuery_1 = require("../queries/AllReservationsQuery");
 var LoadingSpinner_1 = __importDefault(require("../components/LoadingSpinner"));
 var SingleReservation_1 = __importDefault(require("../components/SingleReservation"));
 var ALL_RESERVATIONS_QUERY = graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\nquery ALL_RESERVATIONS_QUERY {\n  reservations {\n    id\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"], ["\nquery ALL_RESERVATIONS_QUERY {\n  reservations {\n    id\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"])));
+exports.ALL_RESERVATIONS_QUERY = ALL_RESERVATIONS_QUERY;
 var styles = react_native_1.StyleSheet.create({
     container: {
         flex: 1,

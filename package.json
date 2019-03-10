@@ -26,7 +26,8 @@
     "tslint": "^5.13.1",
     "tslint-microsoft-contrib": "^6.0.0",
     "tslint-react": "^3.6.0",
-    "tslint-react-a11y": "^1.0.0"
+    "tslint-react-a11y": "^1.0.0",
+    "waait": "^1.0.4"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.3.4",
@@ -45,6 +46,7 @@
     "babel-plugin-styled-components": "^1.9.4",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
+    "enzyme-to-json": "^3.3.5",
     "jest": "^24.1.0",
     "jest-environment-enzyme": "^7.0.1",
     "jest-fetch-mock": "^2.1.1",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createAppContainer, createStackNavigator } from 'react-navigation';
+import { createAppContainer, createStackNavigator, NavigationScreenProp } from 'react-navigation';
 import { ApolloClient } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import { HttpLink } from 'apollo-link-http';
@@ -17,6 +17,12 @@ const AppNavigator = createStackNavigator(
   });
 
 export const AppContainer = createAppContainer(AppNavigator);
+
+export interface ViewReservationsScreenProps {
+  navigation: {
+    navigate(screen: string): void;
+  };
+}
 
 const client = new ApolloClient({
   link: new HttpLink({ uri: 'https://us1.prisma.sh/public-luckox-377/reservation-graphql-backend/dev' }),

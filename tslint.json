@@ -16,6 +16,7 @@
     ],
     "curly": false,
     "eofline": true,
+    "export-name": false,
     "forin": false,
     "function-name": false,
     "indent": [
