@@ -50,11 +50,11 @@ var DateField = /** @class */ (function (_super) {
                 :
                     undefined,
             areErrorStylesActive === true && isErrorValid === true ?
-                react_1.default.createElement(react_native_1.View, null, isRangeValid === false ? react_1.default.createElement(react_native_1.Text, { style: styles.textErrorStyles }, fieldName + " cannot be after departure date") : undefined)
+                react_1.default.createElement(react_native_1.View, null, isRangeValid === false && fieldName === 'Arrival Date' ? react_1.default.createElement(react_native_1.Text, { style: styles.textErrorStyles }, fieldName + " cannot be after departure date") : undefined)
                 :
                     undefined,
             react_1.default.createElement(react_native_1.Text, null, "Enter " + fieldName + " ",
-                react_1.default.createElement(react_native_1.Text, { style: styles.textInputEmphasisStyles }, "(YYYY/MM/DD)")),
+                react_1.default.createElement(react_native_1.Text, { style: styles.textInputEmphasisStyles }, "(MM/DD/YYYY)")),
             react_1.default.createElement(react_native_1.TextInput, { style: styles.textInputStyles, onChangeText: typeOfMethod, value: fieldValue })));
     };
     return DateField;

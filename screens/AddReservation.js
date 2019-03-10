@@ -88,8 +88,8 @@ var AddReservation = /** @class */ (function (_super) {
                 departureDate: ''
             },
             isArrivalValid: false,
-            arrivalFormat: '',
             isDepartureValid: false,
+            departureFormat: false,
             isRangeValid: false,
             isNameValid: false,
             isHotelNameValid: false,
@@ -156,8 +156,7 @@ var AddReservation = /** @class */ (function (_super) {
             });
         };
         var inputArrivalDate = function (arrivalDate) {
-            var validArrival = moment_1.default(arrivalDate, ['YYYYMMDD', 'YYYY/MM/DD', 'YYYY-MM-DD'], true).isValid();
-            var arrivalFormat = moment_1.default(arrivalDate, ['YYYYMMDD', 'YYYY/MM/DD', 'YYYY-MM-DD'], true).format();
+            var validArrival = moment_1.default(arrivalDate, ['MM/DD/YYYY', 'MM-DD-YYYY'], true).isValid();
             var validRange = moment_1.default(departureDate).isSameOrAfter(arrivalDate, 'day');
             if (validRange === false) {
                 _this.setState({
@@ -176,12 +175,11 @@ var AddReservation = /** @class */ (function (_super) {
                     arrivalDate: arrivalDate,
                     departureDate: departureDate
                 },
-                arrivalFormat: arrivalFormat,
                 isArrivalValid: validArrival
             });
         };
         var inputDepartureDate = function (departureDate) {
-            var validDeparture = moment_1.default(departureDate, ['YYYYMMDD', 'YYYY/MM/DD', 'YYYY-MM-DD'], true).isValid();
+            var validDeparture = moment_1.default(departureDate, ['MM/DD/YYYY', 'MM-DD-YYYY'], true).isValid();
             var validRange = moment_1.default(departureDate).isSameOrAfter(arrivalDate, 'day');
             if (validRange === false) {
                 _this.setState({
@@ -217,10 +215,10 @@ var AddReservation = /** @class */ (function (_super) {
                 return (react_1.default.createElement(react_native_1.View, null,
                     loading === true ? react_1.default.createElement(LoadingSpinner_1.default, { copy: 'Sending reservation...' }) : undefined,
                     react_1.default.createElement(react_native_1.Text, null, error),
-                    react_1.default.createElement(NameField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isNameValid, fieldValue: name, fieldName: 'name', typeOfMethod: inputName }),
-                    react_1.default.createElement(NameField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isHotelNameValid, fieldValue: hotelName, fieldName: 'hotel name', typeOfMethod: inputHotelName }),
-                    react_1.default.createElement(DateField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isArrivalValid, isRangeValid: isRangeValid, fieldValue: arrivalDate, fieldName: 'arrival date', typeOfMethod: inputArrivalDate }),
-                    react_1.default.createElement(DateField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isDepartureValid, isRangeValid: isRangeValid, fieldValue: departureDate, fieldName: 'departure date', typeOfMethod: inputDepartureDate }),
+                    react_1.default.createElement(NameField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isNameValid, fieldValue: name, fieldName: 'Name', typeOfMethod: inputName }),
+                    react_1.default.createElement(NameField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isHotelNameValid, fieldValue: hotelName, fieldName: 'Hotel Name', typeOfMethod: inputHotelName }),
+                    react_1.default.createElement(DateField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isArrivalValid, isRangeValid: isRangeValid, fieldValue: arrivalDate, fieldName: 'Arrival Date', typeOfMethod: inputArrivalDate }),
+                    react_1.default.createElement(DateField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isDepartureValid, isRangeValid: isRangeValid, fieldValue: departureDate, fieldName: 'Departure Date', typeOfMethod: inputDepartureDate }),
                     react_1.default.createElement(react_native_1.Button, { onPress: _this.state.areErrorsPresent === true ? toggleErrorStyles : function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
                             return [2 /*return*/, createReservation({ variables: { input: this.state.reservationDetails } })];
                         }); }); }, title: 'Add new reservation', color: "" + primaryColor, accessibilityLabel: 'Add new reservation' })));

@@ -37,8 +37,8 @@ interface State {
     departureDate: string;
   };
   isArrivalValid: boolean;
-  arrivalFormat: string;
   isDepartureValid: boolean;
+  departureFormat: string;
   isRangeValid: boolean;
   areErrorsPresent: boolean;
   areErrorStylesActive: boolean;
@@ -63,8 +63,8 @@ export default class AddReservation extends React.PureComponent<State> {
       departureDate: ''
     },
     isArrivalValid: false,
-    arrivalFormat: '',
     isDepartureValid: false,
+    departureFormat: false,
     isRangeValid: false,
     isNameValid: false,
     isHotelNameValid: false,
@@ -133,8 +133,7 @@ export default class AddReservation extends React.PureComponent<State> {
     };
 
     const inputArrivalDate = (arrivalDate: string) => {
-      const validArrival = moment(arrivalDate, ['YYYYMMDD', 'YYYY/MM/DD', 'YYYY-MM-DD'], true).isValid();
-      const arrivalFormat = moment(arrivalDate, ['YYYYMMDD', 'YYYY/MM/DD', 'YYYY-MM-DD'], true).format();
+      const validArrival = moment(arrivalDate, ['MM/DD/YYYY', 'MM-DD-YYYY'], true).isValid();
       const validRange = moment(departureDate).isSameOrAfter(arrivalDate, 'day');
 
       if (validRange === false) {
@@ -154,13 +153,12 @@ export default class AddReservation extends React.PureComponent<State> {
           arrivalDate,
           departureDate
         },
-        arrivalFormat,
         isArrivalValid: validArrival
       });
     };
 
     const inputDepartureDate = (departureDate: string) => {
-      const validDeparture = moment(departureDate, ['YYYYMMDD', 'YYYY/MM/DD', 'YYYY-MM-DD'], true).isValid();
+      const validDeparture = moment(departureDate, ['MM/DD/YYYY', 'MM-DD-YYYY'], true).isValid();
       const validRange = moment(departureDate).isSameOrAfter(arrivalDate, 'day');
 
       if (validRange === false) {
@@ -204,7 +202,7 @@ export default class AddReservation extends React.PureComponent<State> {
               areErrorStylesActive={ areErrorStylesActive }
               isErrorValid={ isNameValid }
               fieldValue={ name }
-              fieldName='name'
+              fieldName='Name'
               typeOfMethod={ inputName }
             />
 
@@ -212,7 +210,7 @@ export default class AddReservation extends React.PureComponent<State> {
               areErrorStylesActive={ areErrorStylesActive }
               isErrorValid={ isHotelNameValid }
               fieldValue={ hotelName }
-              fieldName='hotel name'
+              fieldName='Hotel Name'
               typeOfMethod={ inputHotelName }
             />
 
@@ -221,7 +219,7 @@ export default class AddReservation extends React.PureComponent<State> {
               isErrorValid={ isArrivalValid }
               isRangeValid={ isRangeValid }
               fieldValue={ arrivalDate }
-              fieldName='arrival date'
+              fieldName='Arrival Date'
               typeOfMethod={ inputArrivalDate }
             />
 
@@ -230,7 +228,7 @@ export default class AddReservation extends React.PureComponent<State> {
               isErrorValid={ isDepartureValid }
               isRangeValid={ isRangeValid }
               fieldValue={ departureDate }
-              fieldName='departure date'
+              fieldName='Departure Date'
               typeOfMethod={ inputDepartureDate }
             />
 

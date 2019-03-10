@@ -1,20 +1,22 @@
 import { mount, shallow } from 'enzyme';
 import React from 'react';
-import NameField from '../NameField';
+import DateField from '../DateField';
 
-const fakeAreErrorStylesActive =  false;
-const fakeIsErrorValid =  false;
-const fakeFieldName =  'name';
-const fakeFieldValue =  'rudy';
+const fakeAreErrorStylesActive = false;
+const fakeIsErrorValid = false;
+const fakeIsRangeValid = false;
+const fakeFieldName = 'arrivalDate';
+const fakeFieldValue = '2019/03/09';
 const fakeTypeOfMethod = () => { 'newValue'; };
 
-describe('<NameField />', () => {
+describe('<DateField />', () => {
 
   it('Mounts correctly', () => {
     const wrapper = mount(
-      <NameField
+      <DateField
         areErrorStylesActive={ fakeAreErrorStylesActive }
         isErrorValid={ fakeIsErrorValid }
+        isRangeValid={ fakeIsRangeValid }
         fieldName={ fakeFieldName }
         fieldValue={ fakeFieldValue }
         typeOfMethod={ fakeTypeOfMethod }
@@ -25,9 +27,10 @@ describe('<NameField />', () => {
 
   it('Contains the React Native TextInput component', () => {
     const wrapper = mount(
-      <NameField
+      <DateField
         areErrorStylesActive={ fakeAreErrorStylesActive }
         isErrorValid={ fakeIsErrorValid }
+        isRangeValid={ fakeIsRangeValid }
         fieldName={ fakeFieldName }
         fieldValue={ fakeFieldValue }
         typeOfMethod={ fakeTypeOfMethod }
@@ -39,9 +42,10 @@ describe('<NameField />', () => {
 
   it('Has a prop of areErrorStylesActive provided to it', () => {
     const wrapper = mount(
-      <NameField
+      <DateField
         areErrorStylesActive={ fakeAreErrorStylesActive }
         isErrorValid={ fakeIsErrorValid }
+        isRangeValid={ fakeIsRangeValid }
         fieldName={ fakeFieldName }
         fieldValue={ fakeFieldValue }
         typeOfMethod={ fakeTypeOfMethod }
@@ -52,9 +56,10 @@ describe('<NameField />', () => {
 
   it('Has a prop of isErrorValid provided to it', () => {
     const wrapper = mount(
-      <NameField
+      <DateField
         areErrorStylesActive={ fakeAreErrorStylesActive }
         isErrorValid={ fakeIsErrorValid }
+        isRangeValid={ fakeIsRangeValid }
         fieldName={ fakeFieldName }
         fieldValue={ fakeFieldValue }
         typeOfMethod={ fakeTypeOfMethod }
@@ -63,11 +68,26 @@ describe('<NameField />', () => {
     expect(wrapper.prop('isErrorValid')).not.toBeNull();
   });
 
-  it('Has a prop of fieldName provided to it with a non-zero value', () => {
+  it('Has a prop of isRangeValid provided to it', () => {
     const wrapper = mount(
-      <NameField
+      <DateField
         areErrorStylesActive={ fakeAreErrorStylesActive }
         isErrorValid={ fakeIsErrorValid }
+        isRangeValid={ fakeIsRangeValid }
+        fieldName={ fakeFieldName }
+        fieldValue={ fakeFieldValue }
+        typeOfMethod={ fakeTypeOfMethod }
+      />
+    );
+    expect(wrapper.prop('isRangeValid')).not.toBeNull();
+  });
+
+  it('Has a prop of fieldName provided to it with a non-zero value', () => {
+    const wrapper = mount(
+      <DateField
+        areErrorStylesActive={ fakeAreErrorStylesActive }
+        isErrorValid={ fakeIsErrorValid }
+        isRangeValid={ fakeIsRangeValid }
         fieldName={ fakeFieldName }
         fieldValue={ fakeFieldValue }
         typeOfMethod={ fakeTypeOfMethod }
@@ -78,9 +98,10 @@ describe('<NameField />', () => {
 
   it('Has a prop of fieldValue provided to it with a non-zero value', () => {
     const wrapper = mount(
-      <NameField
+      <DateField
         areErrorStylesActive={ fakeAreErrorStylesActive }
         isErrorValid={ fakeIsErrorValid }
+        isRangeValid={ fakeIsRangeValid }
         fieldName={ fakeFieldName }
         fieldValue={ fakeFieldValue }
         typeOfMethod={ fakeTypeOfMethod }
@@ -92,9 +113,10 @@ describe('<NameField />', () => {
   it('Should run our typeOfMethod function to React Native\'s TextInput', () => {
     const mockFunction = jest.fn();
     const wrapper = shallow(
-      <NameField
+      <DateField
         areErrorStylesActive={ fakeAreErrorStylesActive }
         isErrorValid={ fakeIsErrorValid }
+        isRangeValid={ fakeIsRangeValid }
         fieldName={ fakeFieldName }
         fieldValue={ fakeFieldValue }
         typeOfMethod={ mockFunction }
@@ -104,4 +126,5 @@ describe('<NameField />', () => {
     textInput.simulate('ChangeText', 'newName');
     expect(mockFunction).toHaveBeenCalled();
   });
+
 });

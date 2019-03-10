@@ -47,12 +47,12 @@ export default class DateField extends React.PureComponent<Props> {
 
         { areErrorStylesActive === true && isErrorValid === true ?
           <View>
-            { isRangeValid === false ? <Text style={ styles.textErrorStyles }>{`${fieldName} cannot be after departure date` }</Text> : undefined }
+            { isRangeValid === false && fieldName === 'Arrival Date' ? <Text style={ styles.textErrorStyles }>{`${fieldName} cannot be after departure date` }</Text> : undefined }
           </View>
           :
           undefined
         }
-        <Text>{ `Enter ${fieldName} ` }<Text style={ styles.textInputEmphasisStyles }>(YYYY/MM/DD)</Text></Text>
+        <Text>{ `Enter ${fieldName} ` }<Text style={ styles.textInputEmphasisStyles }>(MM/DD/YYYY)</Text></Text>
         <TextInput
           style={ styles.textInputStyles }
           onChangeText={ typeOfMethod }
