@@ -38,13 +38,14 @@ interface State {
   };
   isArrivalValid: boolean;
   isDepartureValid: boolean;
-  departureFormat: string;
   isRangeValid: boolean;
   areErrorsPresent: boolean;
   areErrorStylesActive: boolean;
   isNameValid: boolean;
   isHotelNameValid: boolean;
 }
+
+export { ADD_RESERVATION_MUTATION };
 
 /**
  * AddReservation allows users to add a reservation.
@@ -64,7 +65,6 @@ export default class AddReservation extends React.PureComponent<State> {
     },
     isArrivalValid: false,
     isDepartureValid: false,
-    departureFormat: false,
     isRangeValid: false,
     isNameValid: false,
     isHotelNameValid: false,
@@ -194,7 +194,7 @@ export default class AddReservation extends React.PureComponent<State> {
       <KeyboardAvoidingView style={ styles.container } behavior='padding' enabled={ true }>
         <AddReservationMutation mutation={ ADD_RESERVATION_MUTATION }>
           {(createReservation, { loading, error }) => (
-          <View>
+          <View testID='inputCollection'>
             { loading === true ? <LoadingSpinner copy='Sending reservation...' /> : undefined }
             <Text>{ error }</Text>
 

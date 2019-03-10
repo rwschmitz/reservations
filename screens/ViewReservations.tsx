@@ -91,7 +91,7 @@ export default class ViewReservations extends React.PureComponent<ViewReservatio
                       <Text style={ [ styles.introHeadlineTextStyle, styles.introTextStyle ] }>Welcome back!</Text>
                       <Text style={ styles.introTextStyle }>There are { payload.data.reservations.length } reservations currently booked.</Text>
                       <Text style={ styles.introTextStyle }>Would you like to add another reservation?</Text>
-                      <Button onPress={ () => this.props.navigation.navigate('Add') } title='Add another reservation' color={`${primaryColor}`} accessibilityLabel='Add another reservation' />
+                      <Button testID='navigateScreens' onPress={ () => this.props.navigation.navigate('Add') } title='Add another reservation' color={`${primaryColor}`} accessibilityLabel='Add another reservation' />
                     </View>
 
                     { this.state.areReservationsShown === false ?

@@ -97,7 +97,7 @@ var ViewReservations = /** @class */ (function (_super) {
                                 payload.data.reservations.length,
                                 " reservations currently booked."),
                             react_1.default.createElement(react_native_1.Text, { style: styles.introTextStyle }, "Would you like to add another reservation?"),
-                            react_1.default.createElement(react_native_1.Button, { onPress: function () { return _this.props.navigation.navigate('Add'); }, title: 'Add another reservation', color: "" + primaryColor, accessibilityLabel: 'Add another reservation' })),
+                            react_1.default.createElement(react_native_1.Button, { testID: 'navigateScreens', onPress: function () { return _this.props.navigation.navigate('Add'); }, title: 'Add another reservation', color: "" + primaryColor, accessibilityLabel: 'Add another reservation' })),
                         _this.state.areReservationsShown === false ?
                             react_1.default.createElement(react_native_1.View, null,
                                 react_1.default.createElement(react_native_1.Button, { onPress: toggleReservationsVisbility, title: "Show current " + payload.data.reservations.length + " reservations", color: "" + primaryColor, accessibilityLabel: 'View all currently booked reservations' }))

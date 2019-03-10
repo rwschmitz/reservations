@@ -64,6 +64,7 @@ var LoadingSpinner_1 = __importDefault(require("../components/LoadingSpinner"));
 var NameField_1 = __importDefault(require("../components/NameField"));
 var DateField_1 = __importDefault(require("../components/DateField"));
 var ADD_RESERVATION_MUTATION = graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\nmutation createReservation($input: ReservationCreateInput!) {\n  createReservation(data: $input) {\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"], ["\nmutation createReservation($input: ReservationCreateInput!) {\n  createReservation(data: $input) {\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"])));
+exports.ADD_RESERVATION_MUTATION = ADD_RESERVATION_MUTATION;
 var styles = react_native_1.StyleSheet.create({
     container: {
         flex: 1,
@@ -89,7 +90,6 @@ var AddReservation = /** @class */ (function (_super) {
             },
             isArrivalValid: false,
             isDepartureValid: false,
-            departureFormat: false,
             isRangeValid: false,
             isNameValid: false,
             isHotelNameValid: false,
@@ -212,7 +212,7 @@ var AddReservation = /** @class */ (function (_super) {
         return (react_1.default.createElement(react_native_1.KeyboardAvoidingView, { style: styles.container, behavior: 'padding', enabled: true },
             react_1.default.createElement(AddReservationMutation_1.AddReservationMutation, { mutation: ADD_RESERVATION_MUTATION }, function (createReservation, _a) {
                 var loading = _a.loading, error = _a.error;
-                return (react_1.default.createElement(react_native_1.View, null,
+                return (react_1.default.createElement(react_native_1.View, { testID: 'inputCollection' },
                     loading === true ? react_1.default.createElement(LoadingSpinner_1.default, { copy: 'Sending reservation...' }) : undefined,
                     react_1.default.createElement(react_native_1.Text, null, error),
                     react_1.default.createElement(NameField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isNameValid, fieldValue: name, fieldName: 'Name', typeOfMethod: inputName }),

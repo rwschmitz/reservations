@@ -1,0 +1,744 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddReservation /> Renders correctly and matches the snapshot 1`] = `
+Array [
+  <View
+    testID="inputCollection"
+  >
+    <View
+      testID="inputCollection"
+    >
+      <Text>
+        <Text />
+      </Text>
+      <NameField
+        areErrorStylesActive={false}
+        fieldName="Name"
+        fieldValue=""
+        isErrorValid={false}
+        typeOfMethod={[Function]}
+      >
+        <View>
+          <View>
+            <Text>
+              <Text>
+                Enter Name
+              </Text>
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              onChangeText={[Function]}
+              style={
+                Object {
+                  "borderColor": "#5449d2",
+                  "borderRadius": 4,
+                  "borderWidth": 2,
+                  "height": 40,
+                  "marginBottom": 16,
+                  "width": 300,
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            >
+              <TextInput
+                allowFontScaling={true}
+                onChangeText={[Function]}
+                style={
+                  Object {
+                    "borderColor": "#5449d2",
+                    "borderRadius": 4,
+                    "borderWidth": 2,
+                    "height": 40,
+                    "marginBottom": 16,
+                    "width": 300,
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value=""
+              />
+            </TextInput>
+          </View>
+        </View>
+      </NameField>
+      <NameField
+        areErrorStylesActive={false}
+        fieldName="Hotel Name"
+        fieldValue=""
+        isErrorValid={false}
+        typeOfMethod={[Function]}
+      >
+        <View>
+          <View>
+            <Text>
+              <Text>
+                Enter Hotel Name
+              </Text>
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              onChangeText={[Function]}
+              style={
+                Object {
+                  "borderColor": "#5449d2",
+                  "borderRadius": 4,
+                  "borderWidth": 2,
+                  "height": 40,
+                  "marginBottom": 16,
+                  "width": 300,
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            >
+              <TextInput
+                allowFontScaling={true}
+                onChangeText={[Function]}
+                style={
+                  Object {
+                    "borderColor": "#5449d2",
+                    "borderRadius": 4,
+                    "borderWidth": 2,
+                    "height": 40,
+                    "marginBottom": 16,
+                    "width": 300,
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value=""
+              />
+            </TextInput>
+          </View>
+        </View>
+      </NameField>
+      <DateField
+        areErrorStylesActive={false}
+        fieldName="Arrival Date"
+        fieldValue=""
+        isErrorValid={false}
+        isRangeValid={false}
+        typeOfMethod={[Function]}
+      >
+        <View>
+          <View>
+            <Text>
+              <Text>
+                Enter Arrival Date 
+                <Text
+                  style={
+                    Object {
+                      "fontWeight": "700",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontWeight": "700",
+                      }
+                    }
+                  >
+                    (MM/DD/YYYY)
+                  </Text>
+                </Text>
+              </Text>
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              onChangeText={[Function]}
+              style={
+                Object {
+                  "borderColor": "#5449d2",
+                  "borderRadius": 4,
+                  "borderWidth": 2,
+                  "height": 40,
+                  "marginBottom": 16,
+                  "width": 300,
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            >
+              <TextInput
+                allowFontScaling={true}
+                onChangeText={[Function]}
+                style={
+                  Object {
+                    "borderColor": "#5449d2",
+                    "borderRadius": 4,
+                    "borderWidth": 2,
+                    "height": 40,
+                    "marginBottom": 16,
+                    "width": 300,
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value=""
+              />
+            </TextInput>
+          </View>
+        </View>
+      </DateField>
+      <DateField
+        areErrorStylesActive={false}
+        fieldName="Departure Date"
+        fieldValue=""
+        isErrorValid={false}
+        isRangeValid={false}
+        typeOfMethod={[Function]}
+      >
+        <View>
+          <View>
+            <Text>
+              <Text>
+                Enter Departure Date 
+                <Text
+                  style={
+                    Object {
+                      "fontWeight": "700",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "fontWeight": "700",
+                      }
+                    }
+                  >
+                    (MM/DD/YYYY)
+                  </Text>
+                </Text>
+              </Text>
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              onChangeText={[Function]}
+              style={
+                Object {
+                  "borderColor": "#5449d2",
+                  "borderRadius": 4,
+                  "borderWidth": 2,
+                  "height": 40,
+                  "marginBottom": 16,
+                  "width": 300,
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            >
+              <TextInput
+                allowFontScaling={true}
+                onChangeText={[Function]}
+                style={
+                  Object {
+                    "borderColor": "#5449d2",
+                    "borderRadius": 4,
+                    "borderWidth": 2,
+                    "height": 40,
+                    "marginBottom": 16,
+                    "width": 300,
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value=""
+              />
+            </TextInput>
+          </View>
+        </View>
+      </DateField>
+      <Button
+        accessibilityLabel="Add new reservation"
+        color="#5449d2"
+        onPress={[Function]}
+        title="Add new reservation"
+      >
+        <TouchableOpacity
+          accessibilityLabel="Add new reservation"
+          accessibilityRole="button"
+          accessibilityStates={Array []}
+          activeOpacity={0.2}
+          onPress={[Function]}
+        >
+          <AnimatedComponent
+            accessibilityLabel="Add new reservation"
+            accessibilityRole="button"
+            accessibilityStates={Array []}
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                undefined,
+                Object {
+                  "opacity": 1,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityLabel="Add new reservation"
+              accessibilityRole="button"
+              accessibilityStates={Array []}
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                accessibilityLabel="Add new reservation"
+                accessibilityRole="button"
+                accessibilityStates={Array []}
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {},
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {},
+                      ]
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#007AFF",
+                            "fontSize": 18,
+                            "padding": 8,
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#5449d2",
+                          },
+                        ]
+                      }
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#007AFF",
+                              "fontSize": 18,
+                              "padding": 8,
+                              "textAlign": "center",
+                            },
+                            Object {
+                              "color": "#5449d2",
+                            },
+                          ]
+                        }
+                      >
+                        Add new reservation
+                      </Text>
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </AnimatedComponent>
+        </TouchableOpacity>
+      </Button>
+    </View>
+  </View>,
+  <View
+    testID="inputCollection"
+  >
+    <Text>
+      <Text />
+    </Text>
+    <NameField
+      areErrorStylesActive={false}
+      fieldName="Name"
+      fieldValue=""
+      isErrorValid={false}
+      typeOfMethod={[Function]}
+    >
+      <View>
+        <View>
+          <Text>
+            <Text>
+              Enter Name
+            </Text>
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            onChangeText={[Function]}
+            style={
+              Object {
+                "borderColor": "#5449d2",
+                "borderRadius": 4,
+                "borderWidth": 2,
+                "height": 40,
+                "marginBottom": 16,
+                "width": 300,
+              }
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          >
+            <TextInput
+              allowFontScaling={true}
+              onChangeText={[Function]}
+              style={
+                Object {
+                  "borderColor": "#5449d2",
+                  "borderRadius": 4,
+                  "borderWidth": 2,
+                  "height": 40,
+                  "marginBottom": 16,
+                  "width": 300,
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />
+          </TextInput>
+        </View>
+      </View>
+    </NameField>
+    <NameField
+      areErrorStylesActive={false}
+      fieldName="Hotel Name"
+      fieldValue=""
+      isErrorValid={false}
+      typeOfMethod={[Function]}
+    >
+      <View>
+        <View>
+          <Text>
+            <Text>
+              Enter Hotel Name
+            </Text>
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            onChangeText={[Function]}
+            style={
+              Object {
+                "borderColor": "#5449d2",
+                "borderRadius": 4,
+                "borderWidth": 2,
+                "height": 40,
+                "marginBottom": 16,
+                "width": 300,
+              }
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          >
+            <TextInput
+              allowFontScaling={true}
+              onChangeText={[Function]}
+              style={
+                Object {
+                  "borderColor": "#5449d2",
+                  "borderRadius": 4,
+                  "borderWidth": 2,
+                  "height": 40,
+                  "marginBottom": 16,
+                  "width": 300,
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />
+          </TextInput>
+        </View>
+      </View>
+    </NameField>
+    <DateField
+      areErrorStylesActive={false}
+      fieldName="Arrival Date"
+      fieldValue=""
+      isErrorValid={false}
+      isRangeValid={false}
+      typeOfMethod={[Function]}
+    >
+      <View>
+        <View>
+          <Text>
+            <Text>
+              Enter Arrival Date 
+              <Text
+                style={
+                  Object {
+                    "fontWeight": "700",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "fontWeight": "700",
+                    }
+                  }
+                >
+                  (MM/DD/YYYY)
+                </Text>
+              </Text>
+            </Text>
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            onChangeText={[Function]}
+            style={
+              Object {
+                "borderColor": "#5449d2",
+                "borderRadius": 4,
+                "borderWidth": 2,
+                "height": 40,
+                "marginBottom": 16,
+                "width": 300,
+              }
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          >
+            <TextInput
+              allowFontScaling={true}
+              onChangeText={[Function]}
+              style={
+                Object {
+                  "borderColor": "#5449d2",
+                  "borderRadius": 4,
+                  "borderWidth": 2,
+                  "height": 40,
+                  "marginBottom": 16,
+                  "width": 300,
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />
+          </TextInput>
+        </View>
+      </View>
+    </DateField>
+    <DateField
+      areErrorStylesActive={false}
+      fieldName="Departure Date"
+      fieldValue=""
+      isErrorValid={false}
+      isRangeValid={false}
+      typeOfMethod={[Function]}
+    >
+      <View>
+        <View>
+          <Text>
+            <Text>
+              Enter Departure Date 
+              <Text
+                style={
+                  Object {
+                    "fontWeight": "700",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "fontWeight": "700",
+                    }
+                  }
+                >
+                  (MM/DD/YYYY)
+                </Text>
+              </Text>
+            </Text>
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            onChangeText={[Function]}
+            style={
+              Object {
+                "borderColor": "#5449d2",
+                "borderRadius": 4,
+                "borderWidth": 2,
+                "height": 40,
+                "marginBottom": 16,
+                "width": 300,
+              }
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          >
+            <TextInput
+              allowFontScaling={true}
+              onChangeText={[Function]}
+              style={
+                Object {
+                  "borderColor": "#5449d2",
+                  "borderRadius": 4,
+                  "borderWidth": 2,
+                  "height": 40,
+                  "marginBottom": 16,
+                  "width": 300,
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />
+          </TextInput>
+        </View>
+      </View>
+    </DateField>
+    <Button
+      accessibilityLabel="Add new reservation"
+      color="#5449d2"
+      onPress={[Function]}
+      title="Add new reservation"
+    >
+      <TouchableOpacity
+        accessibilityLabel="Add new reservation"
+        accessibilityRole="button"
+        accessibilityStates={Array []}
+        activeOpacity={0.2}
+        onPress={[Function]}
+      >
+        <AnimatedComponent
+          accessibilityLabel="Add new reservation"
+          accessibilityRole="button"
+          accessibilityStates={Array []}
+          accessible={true}
+          isTVSelectable={true}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "opacity": 1,
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityLabel="Add new reservation"
+            accessibilityRole="button"
+            accessibilityStates={Array []}
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              accessibilityLabel="Add new reservation"
+              accessibilityRole="button"
+              accessibilityStates={Array []}
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {},
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {},
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#007AFF",
+                          "fontSize": 18,
+                          "padding": 8,
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#5449d2",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#007AFF",
+                            "fontSize": 18,
+                            "padding": 8,
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#5449d2",
+                          },
+                        ]
+                      }
+                    >
+                      Add new reservation
+                    </Text>
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </AnimatedComponent>
+      </TouchableOpacity>
+    </Button>
+  </View>,
+]
+`;
