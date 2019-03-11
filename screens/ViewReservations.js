@@ -40,7 +40,18 @@ var ViewReservations = /** @class */ (function (_super) {
     function ViewReservations() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.state = {
-            areReservationsShown: false
+            areReservationsShown: false,
+            refreshing: false
+        };
+        _this.onRefresh = function (payload) {
+            _this.setState({
+                refreshing: true
+            });
+            payload.refetch().then(function () {
+                _this.setState({
+                    refreshing: false
+                });
+            });
         };
         return _this;
     }
@@ -72,14 +83,14 @@ var ViewReservations = /** @class */ (function (_super) {
                                 payload.data.reservations.length,
                                 " reservations currently booked."),
                             react_1.default.createElement(react_native_1.Text, { style: textStyles_1.textStyles.introTextStyle }, "Would you like to add another reservation?"),
-                            react_1.default.createElement(react_native_1.Button, { testID: 'navigateScreens', onPress: function () { return _this.props.navigation.navigate('Add'); }, title: 'Add another reservation', color: "" + colorStyles_1.colorStyles.primaryColor.color, accessibilityLabel: 'Add another reservation' })),
+                            react_1.default.createElement(react_native_1.Button, { onPress: function () { return _this.props.navigation.navigate('Add'); }, title: 'Add another reservation', color: "" + colorStyles_1.colorStyles.primaryColor.color, accessibilityLabel: 'Add another reservation' })),
                         _this.state.areReservationsShown === false ?
                             react_1.default.createElement(react_native_1.View, null,
                                 react_1.default.createElement(react_native_1.Button, { onPress: toggleReservationsVisbility, title: "Show current " + payload.data.reservations.length + " reservations", color: "" + colorStyles_1.colorStyles.primaryColor.color, accessibilityLabel: 'View all currently booked reservations' }))
                             :
                                 react_1.default.createElement(react_native_1.View, { style: containerStyles_1.containerStyles.flatListContainerStyle },
                                     react_1.default.createElement(react_native_1.Button, { onPress: toggleReservationsVisbility, title: "Hide all reservations", color: "" + colorStyles_1.colorStyles.primaryColor.color, accessibilityLabel: 'Hide all currently booked reservations' }),
-                                    react_1.default.createElement(react_native_1.FlatList, { data: payload.data.reservations, keyExtractor: function (item) { return item.id; }, renderItem: function (props) {
+                                    react_1.default.createElement(react_native_1.FlatList, { refreshing: _this.state.refreshing, onRefresh: function () { return _this.onRefresh(payload); }, data: payload.data.reservations, keyExtractor: function (item) { return item.id; }, renderItem: function (props) {
                                             return react_1.default.createElement(SingleReservation_1.default, { name: props.item.name, hotelName: props.item.hotelName, arrivalDate: props.item.arrivalDate, departureDate: props.item.departureDate });
                                         } }))));
                 }

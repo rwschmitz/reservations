@@ -60,6 +60,7 @@ var react_native_1 = require("react-native");
 var graphql_tag_1 = __importDefault(require("graphql-tag"));
 var moment_1 = __importDefault(require("moment"));
 var AddReservationMutation_1 = require("../mutations/AddReservationMutation");
+var Confirmation_1 = __importDefault(require("../screens/Confirmation"));
 var LoadingSpinner_1 = __importDefault(require("../components/LoadingSpinner"));
 var NameField_1 = __importDefault(require("../components/NameField"));
 var DateField_1 = __importDefault(require("../components/DateField"));
@@ -87,7 +88,8 @@ var AddReservation = /** @class */ (function (_super) {
             isNameValid: false,
             isHotelNameValid: false,
             areErrorsPresent: true,
-            areErrorStylesActive: false
+            areErrorStylesActive: false,
+            resolvedData: {}
         };
         _this.errorsPresent = function () {
             _this.setState({
@@ -108,7 +110,7 @@ var AddReservation = /** @class */ (function (_super) {
         var _this = this;
         var _a = this.state, _b = _a.reservationDetails, name = _b.name, hotelName = _b.hotelName, arrivalDate = _b.arrivalDate, departureDate = _b.departureDate, areErrorStylesActive = _a.areErrorStylesActive, isNameValid = _a.isNameValid, isHotelNameValid = _a.isHotelNameValid, isArrivalValid = _a.isArrivalValid, isDepartureValid = _a.isDepartureValid, isRangeValid = _a.isRangeValid;
         var inputName = function (name) {
-            var isNameOnlyLetters = /^[a-zA-Z]+$/.test(name);
+            var isNameOnlyLetters = /^[a-zA-Z\s]*$/.test(name);
             if (name.length > 0 && isNameOnlyLetters === true) {
                 _this.setState({
                     isNameValid: true
@@ -204,17 +206,24 @@ var AddReservation = /** @class */ (function (_super) {
         };
         return (react_1.default.createElement(react_native_1.KeyboardAvoidingView, { style: containerStyles_1.containerStyles.container, behavior: 'padding', enabled: true },
             react_1.default.createElement(AddReservationMutation_1.AddReservationMutation, { mutation: ADD_RESERVATION_MUTATION }, function (createReservation, _a) {
-                var loading = _a.loading, error = _a.error;
+                var loading = _a.loading, error = _a.error, called = _a.called, data = _a.data;
                 return (react_1.default.createElement(react_native_1.View, { testID: 'inputCollection' },
                     loading === true ? react_1.default.createElement(LoadingSpinner_1.default, { copy: 'Sending reservation...' }) : undefined,
                     react_1.default.createElement(react_native_1.Text, null, error),
-                    react_1.default.createElement(NameField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isNameValid, fieldValue: name, fieldName: 'Name', typeOfMethod: inputName }),
-                    react_1.default.createElement(NameField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isHotelNameValid, fieldValue: hotelName, fieldName: 'Hotel Name', typeOfMethod: inputHotelName }),
-                    react_1.default.createElement(DateField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isArrivalValid, isRangeValid: isRangeValid, fieldValue: arrivalDate, fieldName: 'Arrival Date', typeOfMethod: inputArrivalDate }),
-                    react_1.default.createElement(DateField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isDepartureValid, isRangeValid: isRangeValid, fieldValue: departureDate, fieldName: 'Departure Date', typeOfMethod: inputDepartureDate }),
-                    react_1.default.createElement(react_native_1.Button, { onPress: _this.state.areErrorsPresent === true ? toggleErrorStyles : function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                            return [2 /*return*/, createReservation({ variables: { input: this.state.reservationDetails } })];
-                        }); }); }, title: 'Add new reservation', color: "" + colorStyles_1.colorStyles.primaryColor.color, accessibilityLabel: 'Add new reservation' })));
+                    called === false ?
+                        react_1.default.createElement(react_native_1.View, null,
+                            react_1.default.createElement(NameField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isNameValid, fieldValue: name, fieldName: 'Name', typeOfMethod: inputName }),
+                            react_1.default.createElement(NameField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isHotelNameValid, fieldValue: hotelName, fieldName: 'Hotel Name', typeOfMethod: inputHotelName }),
+                            react_1.default.createElement(DateField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isArrivalValid, isRangeValid: isRangeValid, fieldValue: arrivalDate, fieldName: 'Arrival Date', typeOfMethod: inputArrivalDate }),
+                            react_1.default.createElement(DateField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isDepartureValid, isRangeValid: isRangeValid, fieldValue: departureDate, fieldName: 'Departure Date', typeOfMethod: inputDepartureDate }),
+                            react_1.default.createElement(react_native_1.Button, { onPress: _this.state.areErrorsPresent === true ? toggleErrorStyles : function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                                    return [2 /*return*/, createReservation({ variables: { input: this.state.reservationDetails } })];
+                                }); }); }, title: 'Add new reservation', color: "" + colorStyles_1.colorStyles.primaryColor.color, accessibilityLabel: 'Add new reservation' }))
+                        :
+                            called === true && data !== undefined ?
+                                react_1.default.createElement(Confirmation_1.default, { confirmationName: _this.state.reservationDetails.name, confirmationHotelName: _this.state.reservationDetails.hotelName, confirmationArrivalDate: _this.state.reservationDetails.arrivalDate, confirmationDepartureDate: _this.state.reservationDetails.departureDate })
+                                :
+                                    undefined));
             })));
     };
     return AddReservation;

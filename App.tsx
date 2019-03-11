@@ -1,16 +1,18 @@
 import React from 'react';
-import { createAppContainer, createStackNavigator, NavigationScreenProp } from 'react-navigation';
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { ApolloClient } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import AddReservation from './screens/AddReservation';
 import ViewReservations from './screens/ViewReservations';
+import Confirmation from './screens/Confirmation';
 
 const AppNavigator = createStackNavigator(
   {
     View: ViewReservations,
-    Add: AddReservation
+    Add: AddReservation,
+    Confirm: Confirmation
   },
   {
     initialRouteName: 'View'

@@ -24,9 +24,11 @@ var apollo_link_http_1 = require("apollo-link-http");
 var apollo_cache_inmemory_1 = require("apollo-cache-inmemory");
 var AddReservation_1 = __importDefault(require("./screens/AddReservation"));
 var ViewReservations_1 = __importDefault(require("./screens/ViewReservations"));
+var Confirmation_1 = __importDefault(require("./screens/Confirmation"));
 var AppNavigator = react_navigation_1.createStackNavigator({
     View: ViewReservations_1.default,
-    Add: AddReservation_1.default
+    Add: AddReservation_1.default,
+    Confirm: Confirmation_1.default
 }, {
     initialRouteName: 'View'
 });

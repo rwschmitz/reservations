@@ -6,7 +6,8 @@ var containerStyles = react_native_1.StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF'
+        backgroundColor: '#f5fcff',
+        width: '100%'
     },
     flatListContainerStyle: {
         marginBottom: 160

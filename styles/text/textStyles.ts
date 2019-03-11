@@ -15,6 +15,19 @@ const textStyles = StyleSheet.create({
   textStyle: {
     color: '#333'
   },
+  textConfirm: {
+    color: '#5449d2',
+    fontSize: 32,
+    paddingBottom: 8,
+    textAlign: 'center',
+    fontWeight: '500'
+  },
+  textConfirmAlt: {
+    fontSize: 20,
+    paddingBottom: 32,
+    textAlign: 'center',
+    fontWeight: '300'
+  },
   textInputStyles: {
     height: 40,
     borderColor: '#5449d2',

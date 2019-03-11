@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import React from 'react';
 import { Button, FlatList, Text, View } from 'react-native';
+import { graphql } from 'react-apollo';
 import { AllReservationsQuery, Reservation } from '../queries/AllReservationsQuery';
 import LoadingSpinner from '../components/LoadingSpinner';
 import SingleReservation from '../components/SingleReservation';
@@ -24,6 +25,7 @@ query ALL_RESERVATIONS_QUERY {
 
 interface State {
   areReservationsShown: boolean;
+  refreshing: boolean;
 }
 
 export { ALL_RESERVATIONS_QUERY };
@@ -34,8 +36,20 @@ export { ALL_RESERVATIONS_QUERY };
 export default class ViewReservations extends React.PureComponent<ViewReservationsScreenProps, State> {
 
   public state = {
-    areReservationsShown: false
+    areReservationsShown: false,
+    refreshing: false
   };
+
+  private readonly onRefresh = (payload: any) => {
+    this.setState({
+      refreshing: true
+    });
+    payload.refetch().then(() => {
+      this.setState({
+        refreshing: false
+      });
+    });
+  }
 
   public render() {
 
@@ -64,7 +78,7 @@ export default class ViewReservations extends React.PureComponent<ViewReservatio
                       <Text style={ [ textStyles.introHeadlineTextStyle, textStyles.introTextStyle ] }>Welcome back!</Text>
                       <Text style={ textStyles.introTextStyle }>There are { payload.data.reservations.length } reservations currently booked.</Text>
                       <Text style={ textStyles.introTextStyle }>Would you like to add another reservation?</Text>
-                      <Button testID='navigateScreens' onPress={ () => this.props.navigation.navigate('Add') } title='Add another reservation' color={`${colorStyles.primaryColor.color}`} accessibilityLabel='Add another reservation' />
+                      <Button onPress={ () => this.props.navigation.navigate('Add') } title='Add another reservation' color={`${colorStyles.primaryColor.color}`} accessibilityLabel='Add another reservation' />
                     </View>
 
                     { this.state.areReservationsShown === false ?
@@ -75,6 +89,8 @@ export default class ViewReservations extends React.PureComponent<ViewReservatio
                       <View style={ containerStyles.flatListContainerStyle }>
                         <Button onPress={ toggleReservationsVisbility } title={`Hide all reservations`} color={`${colorStyles.primaryColor.color}`} accessibilityLabel='Hide all currently booked reservations' />
                         <FlatList
+                          refreshing={ this.state.refreshing }
+                          onRefresh={ () => this.onRefresh(payload) }
                           data={ payload.data.reservations }
                           keyExtractor={ (item: Reservation) => item.id }
                           renderItem={(props) =>

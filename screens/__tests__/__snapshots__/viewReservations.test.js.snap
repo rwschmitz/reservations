@@ -5051,9 +5051,10 @@ exports[`<ViewReservations /> Pulls in reservations data 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#F5FCFF",
+            "backgroundColor": "#f5fcff",
             "flex": 1,
             "justifyContent": "center",
+            "width": "100%",
           }
         }
       >
@@ -5061,9 +5062,10 @@ exports[`<ViewReservations /> Pulls in reservations data 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "#F5FCFF",
+              "backgroundColor": "#f5fcff",
               "flex": 1,
               "justifyContent": "center",
+              "width": "100%",
             }
           }
         >
@@ -5265,7 +5267,6 @@ exports[`<ViewReservations /> Pulls in reservations data 1`] = `
                       accessibilityLabel="Add another reservation"
                       color="#5449d2"
                       onPress={[Function]}
-                      testID="navigateScreens"
                       title="Add another reservation"
                     >
                       <TouchableOpacity
@@ -5274,7 +5275,6 @@ exports[`<ViewReservations /> Pulls in reservations data 1`] = `
                         accessibilityStates={Array []}
                         activeOpacity={0.2}
                         onPress={[Function]}
-                        testID="navigateScreens"
                       >
                         <AnimatedComponent
                           accessibilityLabel="Add another reservation"
@@ -5296,7 +5296,6 @@ exports[`<ViewReservations /> Pulls in reservations data 1`] = `
                               },
                             ]
                           }
-                          testID="navigateScreens"
                         >
                           <View
                             accessibilityLabel="Add another reservation"
@@ -5315,7 +5314,6 @@ exports[`<ViewReservations /> Pulls in reservations data 1`] = `
                                 "opacity": 1,
                               }
                             }
-                            testID="navigateScreens"
                           >
                             <View
                               accessibilityLabel="Add another reservation"
@@ -5334,7 +5332,6 @@ exports[`<ViewReservations /> Pulls in reservations data 1`] = `
                                   "opacity": 1,
                                 }
                               }
-                              testID="navigateScreens"
                             >
                               <View
                                 style={

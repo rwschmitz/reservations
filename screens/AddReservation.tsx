@@ -3,6 +3,7 @@ import { Button, KeyboardAvoidingView, Text, View } from 'react-native';
 import gql from 'graphql-tag';
 import moment from 'moment';
 import { AddReservationMutation } from '../mutations/AddReservationMutation';
+import Confirmation from '../screens/Confirmation';
 import LoadingSpinner from '../components/LoadingSpinner';
 import NameField from '../components/NameField';
 import DateField from '../components/DateField';
@@ -60,7 +61,8 @@ export default class AddReservation extends React.PureComponent<State> {
     isNameValid: false,
     isHotelNameValid: false,
     areErrorsPresent: true,
-    areErrorStylesActive: false
+    areErrorStylesActive: false,
+    resolvedData: {}
   };
 
   private readonly errorsPresent = () => {
@@ -79,7 +81,7 @@ export default class AddReservation extends React.PureComponent<State> {
     const { reservationDetails: { name, hotelName, arrivalDate, departureDate }, areErrorStylesActive, isNameValid, isHotelNameValid, isArrivalValid, isDepartureValid, isRangeValid } = this.state;
 
     const inputName = (name: string) => {
-      const isNameOnlyLetters = /^[a-zA-Z]+$/.test(name);
+      const isNameOnlyLetters = /^[a-zA-Z\s]*$/.test(name);
 
       if (name.length > 0 && isNameOnlyLetters === true) {
         this.setState({
@@ -184,46 +186,58 @@ export default class AddReservation extends React.PureComponent<State> {
     return (
       <KeyboardAvoidingView style={ containerStyles.container } behavior='padding' enabled={ true }>
         <AddReservationMutation mutation={ ADD_RESERVATION_MUTATION }>
-          {(createReservation, { loading, error }) => (
+          {(createReservation, { loading, error, called, data }) => (
           <View testID='inputCollection'>
             { loading === true ? <LoadingSpinner copy='Sending reservation...' /> : undefined }
             <Text>{ error }</Text>
+            { called === false ?
+              <View>
+                <NameField
+                  areErrorStylesActive={ areErrorStylesActive }
+                  isErrorValid={ isNameValid }
+                  fieldValue={ name }
+                  fieldName='Name'
+                  typeOfMethod={ inputName }
+                />
 
-            <NameField
-              areErrorStylesActive={ areErrorStylesActive }
-              isErrorValid={ isNameValid }
-              fieldValue={ name }
-              fieldName='Name'
-              typeOfMethod={ inputName }
+                <NameField
+                  areErrorStylesActive={ areErrorStylesActive }
+                  isErrorValid={ isHotelNameValid }
+                  fieldValue={ hotelName }
+                  fieldName='Hotel Name'
+                  typeOfMethod={ inputHotelName }
+                />
+
+                <DateField
+                  areErrorStylesActive={ areErrorStylesActive }
+                  isErrorValid={ isArrivalValid }
+                  isRangeValid={ isRangeValid }
+                  fieldValue={ arrivalDate }
+                  fieldName='Arrival Date'
+                  typeOfMethod={ inputArrivalDate }
+                />
+
+                <DateField
+                  areErrorStylesActive={ areErrorStylesActive }
+                  isErrorValid={ isDepartureValid }
+                  isRangeValid={ isRangeValid }
+                  fieldValue={ departureDate }
+                  fieldName='Departure Date'
+                  typeOfMethod={ inputDepartureDate }
+                />
+                <Button onPress={ this.state.areErrorsPresent === true ? toggleErrorStyles : async () => createReservation({ variables: { input: this.state.reservationDetails } }) } title='Add new reservation' color={`${colorStyles.primaryColor.color}`} accessibilityLabel='Add new reservation' />
+              </View>
+            :
+            called === true && data !== undefined ?
+            <Confirmation
+              confirmationName={ this.state.reservationDetails.name }
+              confirmationHotelName={ this.state.reservationDetails.hotelName }
+              confirmationArrivalDate={ this.state.reservationDetails.arrivalDate }
+              confirmationDepartureDate={ this.state.reservationDetails.departureDate }
             />
-
-            <NameField
-              areErrorStylesActive={ areErrorStylesActive }
-              isErrorValid={ isHotelNameValid }
-              fieldValue={ hotelName }
-              fieldName='Hotel Name'
-              typeOfMethod={ inputHotelName }
-            />
-
-            <DateField
-              areErrorStylesActive={ areErrorStylesActive }
-              isErrorValid={ isArrivalValid }
-              isRangeValid={ isRangeValid }
-              fieldValue={ arrivalDate }
-              fieldName='Arrival Date'
-              typeOfMethod={ inputArrivalDate }
-            />
-
-            <DateField
-              areErrorStylesActive={ areErrorStylesActive }
-              isErrorValid={ isDepartureValid }
-              isRangeValid={ isRangeValid }
-              fieldValue={ departureDate }
-              fieldName='Departure Date'
-              typeOfMethod={ inputDepartureDate }
-            />
-
-            <Button onPress={ this.state.areErrorsPresent === true ? toggleErrorStyles : async () => createReservation({ variables: { input: this.state.reservationDetails } }) } title='Add new reservation' color={`${colorStyles.primaryColor.color}`} accessibilityLabel='Add new reservation' />
+            :
+            undefined
+            }
           </View>
           )}
         </AddReservationMutation>
