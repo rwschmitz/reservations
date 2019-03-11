@@ -61,6 +61,11 @@ This is a React Native application built to handle reservations.
   - [Documentation](http://momentjs.com/docs/)
   - Handles the formatting and date checking for our date related user inputs.
 
+## Additional Commands
+
+- Run `tsc -w` to start the TypeScript compiler in watch mode.
+- Run `npm run test` to run all tests.
+
 ## Author
 
 Rudolph W. Schmitz <rudolph.w.schmitz@gmail.com>
