@@ -296,6 +296,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNGestureHandler;
 		};
+		B230513822361FB200E6984D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
+			remoteInfo = "reservations-tvOS";
+		};
 		B2FC2779222B361B00D33878 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -655,6 +662,7 @@
 			);
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
+				B230513922361FB200E6984D /* PBXTargetDependency */,
 			);
 			name = reservationsTests;
 			productName = reservationsTests;
@@ -1199,6 +1207,11 @@
 			isa = PBXTargetDependency;
 			target = 2D02E47A1E0B4A5D006451C7 /* reservations-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
+		};
+		B230513922361FB200E6984D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D02E47A1E0B4A5D006451C7 /* reservations-tvOS */;
+			targetProxy = B230513822361FB200E6984D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
