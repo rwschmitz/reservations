@@ -22,7 +22,7 @@ var containerStyles_1 = require("../styles/containers/containerStyles");
 var textStyles_1 = require("../styles/text/textStyles");
 var colorStyles_1 = require("../styles/colors/colorStyles");
 /**
- * LoadingSpinner -- Display this component when we're waiting for our GraphQL queries/mutations to resolve.
+ * LoadingSpinner will display when we're waiting for our GraphQL queries/mutations to resolve.
  */
 var LoadingSpinner = /** @class */ (function (_super) {
     __extends(LoadingSpinner, _super);

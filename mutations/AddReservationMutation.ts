@@ -8,6 +8,6 @@ type createReservation = {
 };
 
 /**
- * AddReservationMutation queries the DB for all currently booked reservations.
+ * AddReservationMutation posts to the DB with the user's reservation.
  */
 export class AddReservationMutation extends Mutation<createReservation> {}

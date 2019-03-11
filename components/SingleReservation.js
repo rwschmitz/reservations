@@ -21,7 +21,7 @@ var react_native_1 = require("react-native");
 var containerStyles_1 = require("../styles/containers/containerStyles");
 var textStyles_1 = require("../styles/text/textStyles");
 /**
- * SingleReservation class contains the code for a single reservation.
+ * SingleReservation contains the code for a single reservation.
  * This class is created in order to utilize a PureComponent to help with optimization.
  */
 var SingleReservation = /** @class */ (function (_super) {

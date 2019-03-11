@@ -40,6 +40,12 @@ export default class ViewReservations extends React.PureComponent<ViewReservatio
     refreshing: false
   };
 
+  /**
+   * @param payload The returned payload from the DB with all of our data
+   * This method is passed into our <FlatList /> component below so:
+   * Users can see the most up to date reservation data,
+   * Users can see the loading animation for visual feedback.
+   */
   private readonly onRefresh = (payload: any) => {
     this.setState({
       refreshing: true
@@ -53,6 +59,9 @@ export default class ViewReservations extends React.PureComponent<ViewReservatio
 
   public render() {
 
+    /**
+     * Allow toggling of all currently booked reservations based on previous state.
+     */
     const toggleReservationsVisbility = () => {
       this.setState({
         areReservationsShown: !this.state.areReservationsShown

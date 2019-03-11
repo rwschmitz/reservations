@@ -65,6 +65,9 @@ export default class AddReservation extends React.PureComponent<State> {
     resolvedData: {}
   };
 
+  /**
+   * Watches user input fields for errors.  Will be used for determing which errors and styles to send back to the user.
+   */
   private readonly errorsPresent = () => {
     this.setState({
       areErrorsPresent: true
@@ -80,6 +83,10 @@ export default class AddReservation extends React.PureComponent<State> {
   public render() {
     const { reservationDetails: { name, hotelName, arrivalDate, departureDate }, areErrorStylesActive, isNameValid, isHotelNameValid, isArrivalValid, isDepartureValid, isRangeValid } = this.state;
 
+    /**
+     * @param name Value of name from the underlying <TextInput /> component.
+     * Also perform a regexp check to ensure the name is only letters and spaces.
+     */
     const inputName = (name: string) => {
       const isNameOnlyLetters = /^[a-zA-Z\s]*$/.test(name);
 
@@ -103,6 +110,10 @@ export default class AddReservation extends React.PureComponent<State> {
       });
     };
 
+    /**
+     * @param hotelName Value of the hotel name from the underlying <TextInput /> component.
+     * No regexp check here because some hotels do contain numbers.
+     */
     const inputHotelName = (hotelName: string) => {
 
       if (hotelName.length === 0) {
@@ -125,6 +136,11 @@ export default class AddReservation extends React.PureComponent<State> {
       });
     };
 
+    /**
+     * @param arrivalDate Value of the arrival date from the underlying <TextInput /> component.
+     * Ensure the date follows a pre-defined format.
+     * Ensure the arrival date is before or on departure date.
+     */
     const inputArrivalDate = (arrivalDate: string) => {
       const validArrival = moment(arrivalDate, ['MM/DD/YYYY', 'MM-DD-YYYY'], true).isValid();
       const validRange = moment(departureDate).isSameOrAfter(arrivalDate, 'day');
@@ -150,6 +166,11 @@ export default class AddReservation extends React.PureComponent<State> {
       });
     };
 
+    /**
+     * @param departureDate Value of the departure date from the underlying <TextInput /> component
+     * Ensure the date follows a pre-defined format.
+     * Ensure the departure date is on or after the arrival date.
+     */
     const inputDepartureDate = (departureDate: string) => {
       const validDeparture = moment(departureDate, ['MM/DD/YYYY', 'MM-DD-YYYY'], true).isValid();
       const validRange = moment(departureDate).isSameOrAfter(arrivalDate, 'day');
@@ -174,6 +195,11 @@ export default class AddReservation extends React.PureComponent<State> {
       });
     };
 
+    /**
+     * Use in conjunction with @method errorsPresent.
+     * We call this when firing off a mutation to the DB to ensure the input fields are free of errors.
+     * Otherwise we show the appropriate error message to the user.
+     */
     const toggleErrorStyles = () => {
       const { areErrorsPresent } = this.state;
       if (areErrorsPresent === true) {
@@ -184,12 +210,14 @@ export default class AddReservation extends React.PureComponent<State> {
     };
 
     return (
+      // Prevent keyboard from overlapping input fields
       <KeyboardAvoidingView style={ containerStyles.container } behavior='padding' enabled={ true }>
         <AddReservationMutation mutation={ ADD_RESERVATION_MUTATION }>
           {(createReservation, { loading, error, called, data }) => (
           <View testID='inputCollection'>
             { loading === true ? <LoadingSpinner copy='Sending reservation...' /> : undefined }
             <Text>{ error }</Text>
+            {/* Monitor our mutation to see if we've successfully sent off a mutation or not */}
             { called === false ?
               <View>
                 <NameField
@@ -228,6 +256,7 @@ export default class AddReservation extends React.PureComponent<State> {
                 <Button onPress={ this.state.areErrorsPresent === true ? toggleErrorStyles : async () => createReservation({ variables: { input: this.state.reservationDetails } }) } title='Add new reservation' color={`${colorStyles.primaryColor.color}`} accessibilityLabel='Add new reservation' />
               </View>
             :
+            // If we've successfully fired off a mutation, render out the confirmation details to the user.
             called === true && data !== undefined ?
             <Confirmation
               confirmationName={ this.state.reservationDetails.name }

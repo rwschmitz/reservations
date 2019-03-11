@@ -31,10 +31,12 @@ var DateField = /** @class */ (function (_super) {
         var _a = this.props, areErrorStylesActive = _a.areErrorStylesActive, isErrorValid = _a.isErrorValid, fieldName = _a.fieldName, isRangeValid = _a.isRangeValid, fieldValue = _a.fieldValue, typeOfMethod = _a.typeOfMethod;
         return (react_1.default.createElement(react_native_1.View, null,
             areErrorStylesActive === true && isErrorValid === false ?
+                // If error is active, check which type of error to throw
                 react_1.default.createElement(react_native_1.View, null, fieldValue.length === 0 ? react_1.default.createElement(react_native_1.Text, { style: textStyles_1.textStyles.textErrorStyles }, "Field cannot be left blank.") : react_1.default.createElement(react_native_1.Text, { style: textStyles_1.textStyles.textErrorStyles }, "Format of date is incorrect."))
                 :
                     undefined,
             areErrorStylesActive === true && isErrorValid === true ?
+                // Ensure departure date is after arrival date
                 react_1.default.createElement(react_native_1.View, null, isRangeValid === false && fieldName === 'Arrival Date' ? react_1.default.createElement(react_native_1.Text, { style: textStyles_1.textStyles.textErrorStyles }, fieldName + " cannot be after departure date") : undefined)
                 :
                     undefined,

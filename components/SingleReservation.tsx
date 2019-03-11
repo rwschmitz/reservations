@@ -11,7 +11,7 @@ interface Props {
 }
 
 /**
- * SingleReservation class contains the code for a single reservation.
+ * SingleReservation contains the code for a single reservation.
  * This class is created in order to utilize a PureComponent to help with optimization.
  */
 export default class SingleReservation extends React.PureComponent<Props> {

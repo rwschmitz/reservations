@@ -22,6 +22,7 @@ export default class DateField extends React.PureComponent<Props> {
     return (
       <View>
         { areErrorStylesActive === true && isErrorValid === false ?
+          // If error is active, check which type of error to throw
           <View>
             { fieldValue.length === 0 ? <Text style={ textStyles.textErrorStyles }>Field cannot be left blank.</Text> : <Text style={ textStyles.textErrorStyles }>Format of date is incorrect.</Text> }
           </View>
@@ -30,6 +31,7 @@ export default class DateField extends React.PureComponent<Props> {
         }
 
         { areErrorStylesActive === true && isErrorValid === true ?
+          // Ensure departure date is after arrival date
           <View>
             { isRangeValid === false && fieldName === 'Arrival Date' ? <Text style={ textStyles.textErrorStyles }>{`${fieldName} cannot be after departure date` }</Text> : undefined }
           </View>

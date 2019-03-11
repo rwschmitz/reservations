@@ -21,6 +21,7 @@ export default class NameField extends React.PureComponent<Props> {
     return (
       <View>
         { areErrorStylesActive === true && isErrorValid === false ?
+        // If error is active, check which type of error to throw
         <View>
         { fieldValue.length === 0 ? <Text style={ textStyles.textErrorStyles }>Field cannot be left blank.</Text> : <Text style={ textStyles.textErrorStyles }>Only letters are allowed.</Text> }
         </View>

@@ -15,7 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_apollo_1 = require("react-apollo");
 /**
- * AddReservationMutation queries the DB for all currently booked reservations.
+ * AddReservationMutation posts to the DB with the user's reservation.
  */
 var AddReservationMutation = /** @class */ (function (_super) {
     __extends(AddReservationMutation, _super);

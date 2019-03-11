@@ -43,6 +43,12 @@ var ViewReservations = /** @class */ (function (_super) {
             areReservationsShown: false,
             refreshing: false
         };
+        /**
+         * @param payload The returned payload from the DB with all of our data
+         * This method is passed into our <FlatList /> component below so:
+         * Users can see the most up to date reservation data,
+         * Users can see the loading animation for visual feedback.
+         */
         _this.onRefresh = function (payload) {
             _this.setState({
                 refreshing: true
@@ -57,6 +63,9 @@ var ViewReservations = /** @class */ (function (_super) {
     }
     ViewReservations.prototype.render = function () {
         var _this = this;
+        /**
+         * Allow toggling of all currently booked reservations based on previous state.
+         */
         var toggleReservationsVisbility = function () {
             _this.setState({
                 areReservationsShown: !_this.state.areReservationsShown

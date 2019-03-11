@@ -9,7 +9,7 @@ interface Props {
 }
 
 /**
- * LoadingSpinner -- Display this component when we're waiting for our GraphQL queries/mutations to resolve.
+ * LoadingSpinner will display when we're waiting for our GraphQL queries/mutations to resolve.
  */
 export default class LoadingSpinner extends React.PureComponent<Props> {
   public render() {

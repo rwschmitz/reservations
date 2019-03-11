@@ -91,6 +91,9 @@ var AddReservation = /** @class */ (function (_super) {
             areErrorStylesActive: false,
             resolvedData: {}
         };
+        /**
+         * Watches user input fields for errors.  Will be used for determing which errors and styles to send back to the user.
+         */
         _this.errorsPresent = function () {
             _this.setState({
                 areErrorsPresent: true
@@ -109,6 +112,10 @@ var AddReservation = /** @class */ (function (_super) {
     AddReservation.prototype.render = function () {
         var _this = this;
         var _a = this.state, _b = _a.reservationDetails, name = _b.name, hotelName = _b.hotelName, arrivalDate = _b.arrivalDate, departureDate = _b.departureDate, areErrorStylesActive = _a.areErrorStylesActive, isNameValid = _a.isNameValid, isHotelNameValid = _a.isHotelNameValid, isArrivalValid = _a.isArrivalValid, isDepartureValid = _a.isDepartureValid, isRangeValid = _a.isRangeValid;
+        /**
+         * @param name Value of name from the underlying <TextInput /> component.
+         * Also perform a regexp check to ensure the name is only letters and spaces.
+         */
         var inputName = function (name) {
             var isNameOnlyLetters = /^[a-zA-Z\s]*$/.test(name);
             if (name.length > 0 && isNameOnlyLetters === true) {
@@ -130,6 +137,10 @@ var AddReservation = /** @class */ (function (_super) {
                 }
             });
         };
+        /**
+         * @param hotelName Value of the hotel name from the underlying <TextInput /> component.
+         * No regexp check here because some hotels do contain numbers.
+         */
         var inputHotelName = function (hotelName) {
             if (hotelName.length === 0) {
                 _this.setState({
@@ -150,6 +161,11 @@ var AddReservation = /** @class */ (function (_super) {
                 }
             });
         };
+        /**
+         * @param arrivalDate Value of the arrival date from the underlying <TextInput /> component.
+         * Ensure the date follows a pre-defined format.
+         * Ensure the arrival date is before or on departure date.
+         */
         var inputArrivalDate = function (arrivalDate) {
             var validArrival = moment_1.default(arrivalDate, ['MM/DD/YYYY', 'MM-DD-YYYY'], true).isValid();
             var validRange = moment_1.default(departureDate).isSameOrAfter(arrivalDate, 'day');
@@ -173,6 +189,11 @@ var AddReservation = /** @class */ (function (_super) {
                 isArrivalValid: validArrival
             });
         };
+        /**
+         * @param departureDate Value of the departure date from the underlying <TextInput /> component
+         * Ensure the date follows a pre-defined format.
+         * Ensure the departure date is on or after the arrival date.
+         */
         var inputDepartureDate = function (departureDate) {
             var validDeparture = moment_1.default(departureDate, ['MM/DD/YYYY', 'MM-DD-YYYY'], true).isValid();
             var validRange = moment_1.default(departureDate).isSameOrAfter(arrivalDate, 'day');
@@ -196,6 +217,11 @@ var AddReservation = /** @class */ (function (_super) {
                 isDepartureValid: validDeparture
             });
         };
+        /**
+         * Use in conjunction with @method errorsPresent.
+         * We call this when firing off a mutation to the DB to ensure the input fields are free of errors.
+         * Otherwise we show the appropriate error message to the user.
+         */
         var toggleErrorStyles = function () {
             var areErrorsPresent = _this.state.areErrorsPresent;
             if (areErrorsPresent === true) {
@@ -204,7 +230,9 @@ var AddReservation = /** @class */ (function (_super) {
                 });
             }
         };
-        return (react_1.default.createElement(react_native_1.KeyboardAvoidingView, { style: containerStyles_1.containerStyles.container, behavior: 'padding', enabled: true },
+        return (
+        // Prevent keyboard from overlapping input fields
+        react_1.default.createElement(react_native_1.KeyboardAvoidingView, { style: containerStyles_1.containerStyles.container, behavior: 'padding', enabled: true },
             react_1.default.createElement(AddReservationMutation_1.AddReservationMutation, { mutation: ADD_RESERVATION_MUTATION }, function (createReservation, _a) {
                 var loading = _a.loading, error = _a.error, called = _a.called, data = _a.data;
                 return (react_1.default.createElement(react_native_1.View, { testID: 'inputCollection' },
@@ -220,6 +248,7 @@ var AddReservation = /** @class */ (function (_super) {
                                     return [2 /*return*/, createReservation({ variables: { input: this.state.reservationDetails } })];
                                 }); }); }, title: 'Add new reservation', color: "" + colorStyles_1.colorStyles.primaryColor.color, accessibilityLabel: 'Add new reservation' }))
                         :
+                            // If we've successfully fired off a mutation, render out the confirmation details to the user.
                             called === true && data !== undefined ?
                                 react_1.default.createElement(Confirmation_1.default, { confirmationName: _this.state.reservationDetails.name, confirmationHotelName: _this.state.reservationDetails.hotelName, confirmationArrivalDate: _this.state.reservationDetails.arrivalDate, confirmationDepartureDate: _this.state.reservationDetails.departureDate })
                                 :
