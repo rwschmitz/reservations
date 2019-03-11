@@ -1,22 +1,8 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  },
-  loadingContainer: {
-    paddingTop: 16
-  },
-  textStyle: {
-    color: '#333'
-  }
-});
-
-const primaryColor: string = '#5449d2';
+import { ActivityIndicator, Text, View } from 'react-native';
+import { containerStyles } from '../styles/containers/containerStyles';
+import { textStyles } from '../styles/text/textStyles';
+import { colorStyles } from '../styles/colors/colorStyles';
 
 interface Props {
   copy: string;
@@ -30,10 +16,10 @@ export default class LoadingSpinner extends React.PureComponent<Props> {
     const { copy } = this.props;
 
     return (
-      <View style={ styles.container }>
-        <ActivityIndicator size='large' color={`${primaryColor}`} />
-        <View style={ styles.loadingContainer }>
-          <Text style={ styles.textStyle }>{ copy }</Text>
+      <View style={ containerStyles.container }>
+        <ActivityIndicator size='large' color={`${colorStyles.primaryColor.color}`} />
+        <View style={ containerStyles.loadingContainer }>
+          <Text style={ textStyles.textStyle }>{ copy }</Text>
         </View>
       </View>
     );

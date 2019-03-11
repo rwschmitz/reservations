@@ -1,11 +1,13 @@
 import React from 'react';
-import { Button, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
+import { Button, KeyboardAvoidingView, Text, View } from 'react-native';
 import gql from 'graphql-tag';
 import moment from 'moment';
 import { AddReservationMutation } from '../mutations/AddReservationMutation';
 import LoadingSpinner from '../components/LoadingSpinner';
 import NameField from '../components/NameField';
 import DateField from '../components/DateField';
+import { containerStyles } from '../styles/containers/containerStyles';
+import { colorStyles } from '../styles/colors/colorStyles';
 
 const ADD_RESERVATION_MUTATION = gql`
 mutation createReservation($input: ReservationCreateInput!) {
@@ -17,17 +19,6 @@ mutation createReservation($input: ReservationCreateInput!) {
   }
 }
 `;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  }
-});
-
-const primaryColor: string = '#5449d2';
 
 interface State {
   reservationDetails: {
@@ -191,7 +182,7 @@ export default class AddReservation extends React.PureComponent<State> {
     };
 
     return (
-      <KeyboardAvoidingView style={ styles.container } behavior='padding' enabled={ true }>
+      <KeyboardAvoidingView style={ containerStyles.container } behavior='padding' enabled={ true }>
         <AddReservationMutation mutation={ ADD_RESERVATION_MUTATION }>
           {(createReservation, { loading, error }) => (
           <View testID='inputCollection'>
@@ -232,7 +223,7 @@ export default class AddReservation extends React.PureComponent<State> {
               typeOfMethod={ inputDepartureDate }
             />
 
-            <Button onPress={ this.state.areErrorsPresent === true ? toggleErrorStyles : async () => createReservation({ variables: { input: this.state.reservationDetails } }) } title='Add new reservation' color={`${primaryColor}`} accessibilityLabel='Add new reservation' />
+            <Button onPress={ this.state.areErrorsPresent === true ? toggleErrorStyles : async () => createReservation({ variables: { input: this.state.reservationDetails } }) } title='Add new reservation' color={`${colorStyles.primaryColor.color}`} accessibilityLabel='Add new reservation' />
           </View>
           )}
         </AddReservationMutation>

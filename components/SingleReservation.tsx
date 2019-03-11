@@ -1,24 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  reservationContainer: {
-    paddingBottom: 64,
-    width: '100%'
-  },
-  labelStyle: {
-    fontSize: 16,
-    fontWeight: '700'
-  },
-  valueStyle: {
-    fontWeight: '300'
-  }
-});
+import { Text, View } from 'react-native';
+import { containerStyles } from '../styles/containers/containerStyles';
+import { textStyles } from '../styles/text/textStyles';
 
 interface Props {
   name: string;
@@ -36,12 +19,12 @@ export default class SingleReservation extends React.PureComponent<Props> {
     const { name, hotelName, arrivalDate, departureDate } = this.props;
 
     return (
-      <View style={ styles.container }>
-        <View style={ styles.reservationContainer }>
-          <Text style={ styles.labelStyle }>Name: <Text style={ styles.valueStyle }>{ name }</Text></Text>
-          <Text style={ styles.labelStyle }>Hotel Name: <Text style={ styles.valueStyle }>{ hotelName }</Text></Text>
-          <Text style={ styles.labelStyle }>Arrival Date: <Text style={ styles.valueStyle }>{ arrivalDate }</Text></Text>
-          <Text style={ styles.labelStyle }>Depature Date: <Text style={ styles.valueStyle }>{ departureDate }</Text></Text>
+      <View style={ containerStyles.container }>
+        <View style={ containerStyles.reservationContainer }>
+          <Text style={ textStyles.labelStyle }>Name: <Text style={ textStyles.valueStyle }>{ name }</Text></Text>
+          <Text style={ textStyles.labelStyle }>Hotel Name: <Text style={ textStyles.valueStyle }>{ hotelName }</Text></Text>
+          <Text style={ textStyles.labelStyle }>Arrival Date: <Text style={ textStyles.valueStyle }>{ arrivalDate }</Text></Text>
+          <Text style={ textStyles.labelStyle }>Depature Date: <Text style={ textStyles.valueStyle }>{ departureDate }</Text></Text>
         </View>
       </View>
     );

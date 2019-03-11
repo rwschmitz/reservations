@@ -63,17 +63,10 @@ var AddReservationMutation_1 = require("../mutations/AddReservationMutation");
 var LoadingSpinner_1 = __importDefault(require("../components/LoadingSpinner"));
 var NameField_1 = __importDefault(require("../components/NameField"));
 var DateField_1 = __importDefault(require("../components/DateField"));
+var containerStyles_1 = require("../styles/containers/containerStyles");
+var colorStyles_1 = require("../styles/colors/colorStyles");
 var ADD_RESERVATION_MUTATION = graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\nmutation createReservation($input: ReservationCreateInput!) {\n  createReservation(data: $input) {\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"], ["\nmutation createReservation($input: ReservationCreateInput!) {\n  createReservation(data: $input) {\n    name\n    hotelName\n    arrivalDate\n    departureDate\n  }\n}\n"])));
 exports.ADD_RESERVATION_MUTATION = ADD_RESERVATION_MUTATION;
-var styles = react_native_1.StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF'
-    }
-});
-var primaryColor = '#5449d2';
 /**
  * AddReservation allows users to add a reservation.
  */
@@ -209,7 +202,7 @@ var AddReservation = /** @class */ (function (_super) {
                 });
             }
         };
-        return (react_1.default.createElement(react_native_1.KeyboardAvoidingView, { style: styles.container, behavior: 'padding', enabled: true },
+        return (react_1.default.createElement(react_native_1.KeyboardAvoidingView, { style: containerStyles_1.containerStyles.container, behavior: 'padding', enabled: true },
             react_1.default.createElement(AddReservationMutation_1.AddReservationMutation, { mutation: ADD_RESERVATION_MUTATION }, function (createReservation, _a) {
                 var loading = _a.loading, error = _a.error;
                 return (react_1.default.createElement(react_native_1.View, { testID: 'inputCollection' },
@@ -221,7 +214,7 @@ var AddReservation = /** @class */ (function (_super) {
                     react_1.default.createElement(DateField_1.default, { areErrorStylesActive: areErrorStylesActive, isErrorValid: isDepartureValid, isRangeValid: isRangeValid, fieldValue: departureDate, fieldName: 'Departure Date', typeOfMethod: inputDepartureDate }),
                     react_1.default.createElement(react_native_1.Button, { onPress: _this.state.areErrorsPresent === true ? toggleErrorStyles : function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
                             return [2 /*return*/, createReservation({ variables: { input: this.state.reservationDetails } })];
-                        }); }); }, title: 'Add new reservation', color: "" + primaryColor, accessibilityLabel: 'Add new reservation' })));
+                        }); }); }, title: 'Add new reservation', color: "" + colorStyles_1.colorStyles.primaryColor.color, accessibilityLabel: 'Add new reservation' })));
             })));
     };
     return AddReservation;

@@ -1,22 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-
-const styles = StyleSheet.create({
-  textInputStyles: {
-    height: 40,
-    borderColor: '#5449d2',
-    borderWidth: 2,
-    borderRadius: 4,
-    marginBottom: 16,
-    width: 300
-  },
-  textInputEmphasisStyles: {
-    fontWeight: '700'
-  },
-  textErrorStyles: {
-    color: '#e12d39'
-  }
-});
+import { Text, TextInput, View } from 'react-native';
+import { textStyles } from '../styles/text/textStyles';
 
 interface Props {
   areErrorStylesActive: boolean;
@@ -39,7 +23,7 @@ export default class DateField extends React.PureComponent<Props> {
       <View>
         { areErrorStylesActive === true && isErrorValid === false ?
           <View>
-            { fieldValue.length === 0 ? <Text style={ styles.textErrorStyles }>Field cannot be left blank.</Text> : <Text style={ styles.textErrorStyles }>Format of date is incorrect.</Text> }
+            { fieldValue.length === 0 ? <Text style={ textStyles.textErrorStyles }>Field cannot be left blank.</Text> : <Text style={ textStyles.textErrorStyles }>Format of date is incorrect.</Text> }
           </View>
           :
           undefined
@@ -47,14 +31,14 @@ export default class DateField extends React.PureComponent<Props> {
 
         { areErrorStylesActive === true && isErrorValid === true ?
           <View>
-            { isRangeValid === false && fieldName === 'Arrival Date' ? <Text style={ styles.textErrorStyles }>{`${fieldName} cannot be after departure date` }</Text> : undefined }
+            { isRangeValid === false && fieldName === 'Arrival Date' ? <Text style={ textStyles.textErrorStyles }>{`${fieldName} cannot be after departure date` }</Text> : undefined }
           </View>
           :
           undefined
         }
-        <Text>{ `Enter ${fieldName} ` }<Text style={ styles.textInputEmphasisStyles }>(MM/DD/YYYY)</Text></Text>
+        <Text>{ `Enter ${fieldName} ` }<Text style={ textStyles.textInputEmphasisStyles }>(MM/DD/YYYY)</Text></Text>
         <TextInput
-          style={ styles.textInputStyles }
+          style={ textStyles.textInputStyles }
           onChangeText={ typeOfMethod }
           value={ fieldValue }
         />

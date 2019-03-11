@@ -18,21 +18,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var react_native_1 = require("react-native");
-var styles = react_native_1.StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF'
-    },
-    loadingContainer: {
-        paddingTop: 16
-    },
-    textStyle: {
-        color: '#333'
-    }
-});
-var primaryColor = '#5449d2';
+var containerStyles_1 = require("../styles/containers/containerStyles");
+var textStyles_1 = require("../styles/text/textStyles");
+var colorStyles_1 = require("../styles/colors/colorStyles");
 /**
  * LoadingSpinner -- Display this component when we're waiting for our GraphQL queries/mutations to resolve.
  */
@@ -43,10 +31,10 @@ var LoadingSpinner = /** @class */ (function (_super) {
     }
     LoadingSpinner.prototype.render = function () {
         var copy = this.props.copy;
-        return (react_1.default.createElement(react_native_1.View, { style: styles.container },
-            react_1.default.createElement(react_native_1.ActivityIndicator, { size: 'large', color: "" + primaryColor }),
-            react_1.default.createElement(react_native_1.View, { style: styles.loadingContainer },
-                react_1.default.createElement(react_native_1.Text, { style: styles.textStyle }, copy))));
+        return (react_1.default.createElement(react_native_1.View, { style: containerStyles_1.containerStyles.container },
+            react_1.default.createElement(react_native_1.ActivityIndicator, { size: 'large', color: "" + colorStyles_1.colorStyles.primaryColor.color }),
+            react_1.default.createElement(react_native_1.View, { style: containerStyles_1.containerStyles.loadingContainer },
+                react_1.default.createElement(react_native_1.Text, { style: textStyles_1.textStyles.textStyle }, copy))));
     };
     return LoadingSpinner;
 }(react_1.default.PureComponent));
