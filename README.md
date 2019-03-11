@@ -9,14 +9,23 @@
 
 ### Steps
 
-1 - Clone the repo [https://github.com/rwschmitz/reservations.git](https://github.com/rwschmitz/reservations.git)
-2 - Run `npm install`
-3 - Open XCode
-4 - Navigate to `reservations/ios/reservations.xcodeproj`
-5 - In XCode, under the `general` tab, ensure that your signing is setup correctly.
-  a - Perform this check for both reservations and reservationsTestes
-6 - Ensure your phone and the computer running XCode are on the same network.
-7 - In Xcode, click the play button to build and run the app.
+1. Clone the repo [https://github.com/rwschmitz/reservations.git](https://github.com/rwschmitz/reservations.git)
+2. Run `npm install`
+3. Run `react-native link`
+4. Run `npm run start`
+5. Open XCode
+6. Navigate to `reservations/ios/reservations.xcodeproj`
+7. In XCode, under the `general` tab, ensure that your signing is setup correctly.
+  a. Perform this check for both reservations and reservationsTestes
+8. Ensure your phone and the computer running XCode are on the same network.
+9. In Xcode, click the play button to build and run the app.
+
+## Troubleshooting
+
+- If you're having issues with your `-tvOS` provisioning profiles, you may delete them.
+  - In XCode, show the projects and target list.
+  - Right click and delete the two `-tvOS` targets from the project.
+  - [React Native link adds tvOS library targets to the ios target](https://github.com/facebook/react-native/issues/13783)
 
 ## Description
 
