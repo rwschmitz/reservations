@@ -24,3 +24,9 @@ Types:
 ### Changed
 
 - Change license to GNU General Public License v3.0
+
+## [1.0.1] - 2019-03-11
+
+### Added
+
+- Update README to include demo video

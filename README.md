@@ -1,5 +1,9 @@
 # Reservations
 
+## Demo
+
+[Open link to view demo video on Vimeo!](https://vimeo.com/322942604)
+
 ## Installation
 
 ### Requisites
